@@ -292,10 +292,12 @@ EOF
 After updating the User Data script and relaunching the instance, the enhanced web page was displayed when accessing the public IPv4 address, showcasing a professional AWS-branded interface.
 
 **[Screenshot: Enhanced Web Server with Professional Styling]**
-> *Place screenshot of the professionally styled web page here*
+> <img width="1680" height="1050" alt="Screenshot 2026-06-22 at 22 23 04" src="https://github.com/user-attachments/assets/172bc855-4b2f-4167-be23-a2e0d9d92cac" />
+
 
 **[Screenshot: Enhanced User Data Script in Advanced Details Pane]**
-> *Place screenshot showing the updated User Data script entry here*
+> <img width="873" height="471" alt="Screenshot 2026-06-22 at 22 17 00" src="https://github.com/user-attachments/assets/485a76b6-a3b0-4eea-9ffc-cac5ea72d89a" />
+><img width="598" height="373" alt="Screenshot 2026-06-22 at 22 18 01" src="https://github.com/user-attachments/assets/c3eae5c8-7ce8-4d20-b802-0a6a0db07d64" />
 
 ---
 
