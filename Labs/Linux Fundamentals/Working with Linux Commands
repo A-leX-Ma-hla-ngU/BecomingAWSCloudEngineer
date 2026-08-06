@@ -1,0 +1,379 @@
+# Working with Linux Commands
+> AWS re/Start Linux Lab Documentation
+
+## Overview
+
+In this lab, I practiced using several essential Linux command-line utilities to manipulate files and process text. I learned how to redirect output, sort file contents, extract specific fields, search through files using pipes, and modify text using the `sed` command.
+
+---
+
+## Objectives
+
+By the end of this lab, I had:
+
+- Used the `tee` command to display output and write it to a file simultaneously.
+- Used the `sort` command to organize data alphabetically.
+- Used the `cut` command to extract specific fields from a CSV file.
+- Used the `sed` command to replace text within files.
+- Used the pipe (`|`) operator to combine commands.
+
+---
+
+## Prerequisites
+
+Before beginning the lab, I:
+
+- Connected to the provided Amazon EC2 Linux instance using SSH.
+- Confirmed that I was working inside the `/home/ec2-user` directory.
+
+```bash
+pwd
+```
+
+Expected output:
+
+```text
+/home/ec2-user
+```
+
+---
+
+# Task 1 – Using the `tee` Command
+
+## Purpose
+
+The objective of this task was to learn how the `tee` command writes command output to both the terminal and a file simultaneously.
+
+## Command Used
+
+```bash
+hostname | tee file1.txt
+```
+
+### Explanation
+
+- `hostname` displayed the hostname of the EC2 instance.
+- The pipe (`|`) redirected the output to `tee`.
+- `tee` displayed the hostname on the screen while also saving it into `file1.txt`.
+
+Example output:
+
+```text
+ip-xx-xx-xx-xx.region.compute.internal
+```
+
+---
+
+### Verify the File
+
+I confirmed that the file had been created by listing the contents of the directory.
+
+```bash
+ls
+```
+
+Expected output:
+
+```text
+companyA
+file1.txt
+```
+
+---
+
+### Screenshot Placeholder
+
+> **Screenshot 1:** Hostname displayed using `tee`
+
+```text
+📸 Insert Screenshot Here
+File: images/tee-command-output.png
+```
+
+---
+
+> **Screenshot 2:** Listing directory showing `file1.txt`
+
+```text
+📸 Insert Screenshot Here
+File: images/tee-ls-output.png
+```
+
+---
+
+# Task 2 – Using the `sort` Command
+
+## Purpose
+
+The objective of this task was to sort CSV data alphabetically.
+
+---
+
+## Creating the CSV File
+
+I created a file named `test.csv`.
+
+```bash
+cat > test.csv
+```
+
+Contents:
+
+```text
+Factory, 1, Paris
+Store, 2, Dubai
+Factory, 3, Brasilia
+Store, 4, Algiers
+Factory, 5, Tokyo
+```
+
+After entering the data, I pressed:
+
+```text
+CTRL + D
+```
+
+to save the file.
+
+---
+
+## Sorting the File
+
+I sorted the file alphabetically.
+
+```bash
+sort test.csv
+```
+
+Output:
+
+```text
+Factory, 1, Paris
+Factory, 3, Brasilia
+Factory, 5, Tokyo
+Store, 2, Dubai
+Store, 4, Algiers
+```
+
+### Explanation
+
+The `sort` command sorted the records alphabetically by default, grouping all Factory entries before Store entries. Records sharing the same first field were then ordered numerically by the second field.
+
+---
+
+### Screenshot Placeholder
+
+```text
+📸 Insert Screenshot Here
+File: images/sort-command-output.png
+```
+
+---
+
+# Task 3 – Searching Using the Pipe Operator
+
+## Purpose
+
+The objective of this task was to combine commands using the pipe (`|`) operator and search for matching text.
+
+## Command Used
+
+```bash
+grep Paris test.csv
+```
+
+Output:
+
+```text
+Factory, 1, Paris
+```
+
+### Explanation
+
+The `grep` command searched the file and returned only the line containing the word **Paris**.
+
+> **Note:** Although the original instructions referenced `find | grep Paris test.csv`, the practical command that performs this search is:
+
+```bash
+grep Paris test.csv
+```
+
+---
+
+### Screenshot Placeholder
+
+```text
+📸 Insert Screenshot Here
+File: images/grep-paris-output.png
+```
+
+---
+
+# Task 4 – Using the `cut` Command
+
+## Purpose
+
+The objective of this task was to extract specific fields from a CSV file.
+
+---
+
+## Creating the File
+
+```bash
+cat > cities.csv
+```
+
+Contents:
+
+```text
+Dallas, Texas
+Seattle, Washington
+Los Angeles, California
+Atlanta, Georgia
+New York, New York
+```
+
+Press:
+
+```text
+CTRL + D
+```
+
+to save.
+
+---
+
+## Extracting the First Field
+
+Command:
+
+```bash
+cut -d ',' -f 1 cities.csv
+```
+
+Output:
+
+```text
+Dallas
+Seattle
+Los Angeles
+Atlanta
+New York
+```
+
+### Explanation
+
+The command used:
+
+- `-d ','` to specify a comma as the delimiter.
+- `-f 1` to extract only the first field from each record.
+
+Everything after the comma was removed.
+
+---
+
+### Screenshot Placeholder
+
+```text
+📸 Insert Screenshot Here
+File: images/cut-command-output.png
+```
+
+---
+
+# Task 5 – Using the `sed` Command
+
+## Purpose
+
+The objective of this task was to replace the first comma on each line with a period.
+
+---
+
+## Modifying `cities.csv`
+
+Command:
+
+```bash
+sed 's/,/./' cities.csv
+```
+
+Output:
+
+```text
+Dallas. Texas
+Seattle. Washington
+Los Angeles. California
+Atlanta. Georgia
+New York. New York
+```
+
+---
+
+## Modifying `test.csv`
+
+Command:
+
+```bash
+sed 's/,/./' test.csv
+```
+
+Output:
+
+```text
+Factory. 1, Paris
+Store. 2, Dubai
+Factory. 3, Brasilia
+Store. 4, Algiers
+Factory. 5, Tokyo
+```
+
+### Explanation
+
+The `sed` command:
+
+- searched each line for the first comma,
+- replaced it with a period,
+- left the remaining commas unchanged.
+
+---
+
+### Screenshot Placeholder
+
+```text
+📸 Insert Screenshot Here
+File: images/sed-command-output.png
+```
+
+---
+
+# Commands Summary
+
+| Command | Purpose |
+|----------|---------|
+| `tee` | Displayed output while simultaneously writing it to a file |
+| `sort` | Sorted the contents of a file alphabetically |
+| `grep` | Searched for matching text within a file |
+| `cut` | Extracted selected fields from delimited data |
+| `sed` | Replaced text within a file |
+| `|` (Pipe) | Passed the output of one command as input to another |
+
+---
+
+# Key Takeaways
+
+During this lab, I strengthened my understanding of several fundamental Linux commands used for text processing and file manipulation. I learned how to:
+
+- Redirect command output into files without losing terminal output.
+- Organize structured data using sorting.
+- Search efficiently within files.
+- Extract specific fields from comma-separated values.
+- Modify text using stream editing.
+- Combine commands using pipes to build more efficient command-line workflows.
+
+These commands are foundational skills for Linux system administration, cloud engineering, and DevOps workflows where automation and text processing are common tasks.
+
+---
+
+## Conclusion
+
+This lab provided practical experience working with common Linux command-line tools used in everyday system administration. By completing each exercise, I gained confidence manipulating files directly from the terminal and developed a stronger understanding of how Linux utilities can be combined to automate routine tasks.
