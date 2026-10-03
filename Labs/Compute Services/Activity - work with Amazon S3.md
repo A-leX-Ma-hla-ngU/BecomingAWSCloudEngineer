@@ -222,7 +222,7 @@ Screenshot placeholder: <img width="827" height="154" alt="Screenshot 2026-07-28
 <img width="1033" height="212" alt="Screenshot 2026-07-28 at 17 56 52" src="https://github.com/user-attachments/assets/26bcab6f-af04-4d15-8e21-b4ad7109a294" />
 
 
-- I tested the delete use case with aws s3api delete-object --bucket cafe-abc123 --key images/Strawberry-Tarts.jpg and confirmed an email notification arrived with eventName ObjectRemoved:Delete and object key images/Strawberry-Tarts.jpg.
+- I tested the delete use case with aws s3api delete-object --bucket cafe-0246 --key images/Strawberry-Tarts.jpg and confirmed an email notification arrived with eventName ObjectRemoved:Delete and object key images/Strawberry-Tarts.jpg.
 
 Screenshot placeholder: <img width="841" height="52" alt="Screenshot 2026-07-28 at 17 58 19" src="https://github.com/user-attachments/assets/cda4a0f2-a26c-49ce-ada0-aa5f835d3fce" />
 
