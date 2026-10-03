@@ -176,6 +176,7 @@ sudo mount /dev/sdc /mnt/data-store2
 - I listed the contents of the restored mount and verified that file.txt existed (the file that had been present when the snapshot was taken):
 
 ls /mnt/data-store2/file.txt
+
 sudo sh -c "echo Just testing out this snapshotted volume /mnt/data-store2/file.txt
 
 Screenshot placeholder: <img width="786" height="77" alt="Screenshot 2026-07-16 at 20 55 57" src="https://github.com/user-attachments/assets/8fb65ee0-fba5-418c-91ad-7b572b33e073" />
