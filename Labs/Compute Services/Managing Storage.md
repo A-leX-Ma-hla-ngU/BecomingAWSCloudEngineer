@@ -45,9 +45,9 @@ Screenshot placeholder: `<img width="829" height="572" alt="Screenshot 2026-07-2
 Task 1.2 — Attached an instance profile to Processor
 
 - I opened the EC2 console, selected the Processor instance, and attached the pre-created IAM role `S3BucketAccess` via Actions > Security > Modify IAM role. This role allowed the Processor to interact with S3 and EBS as required.
-screenshot placeholder: `<img width="839" height="587" alt="Screenshot 2026-07-27 at 20 25 27" src="https://github.com/user-attachments/assets/51cc43a5-e003-4653-a908-1b859e28c540" />'
+screenshot: `<img width="839" height="587" alt="Screenshot 2026-07-27 at 20 25 27" src="https://github.com/user-attachments/assets/51cc43a5-e003-4653-a908-1b859e28c540" />'
 
-Screenshot placeholder: `<img width="832" height="569" alt="Screenshot 2026-07-27 at 20 26 01" src="https://github.com/user-attachments/assets/7ec577dd-a637-4f89-bbe2-3a9b3bd58c26" />'
+Screenshot: `<img width="832" height="569" alt="Screenshot 2026-07-27 at 20 26 01" src="https://github.com/user-attachments/assets/7ec577dd-a637-4f89-bbe2-3a9b3bd58c26" />'
 
 ---
 
