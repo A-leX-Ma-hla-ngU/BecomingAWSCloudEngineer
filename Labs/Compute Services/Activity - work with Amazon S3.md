@@ -185,12 +185,18 @@ Screenshot placeholder: <img width="806" height="571" alt="Screenshot 2026-07-28
 
 - I created an Email subscription on the topic and confirmed the subscription by clicking the confirmation link in the received email.
 
-Screenshot placeholder: <img width="209" height="81" alt="Screenshot 2026-07-28 at 17 13 05" src="https://github.com/user-attachments/assets/8494d047-efbe-40e4-9514-3ca8a820d90f" />
+Screenshot placeholder: 
+
+<img width="209" height="81" alt="Screenshot 2026-07-28 at 17 13 05" src="https://github.com/user-attachments/assets/8494d047-efbe-40e4-9514-3ca8a820d90f" />
+
+
 Task 4.2 — Added event notification configuration to the S3 bucket
 
 - On the CLI Host I created a JSON file named s3EventNotification.json that defined a TopicConfigurations array with TopicArn set to the s3NotificationTopic ARN, Events set to ["s3:ObjectCreated:*","s3:ObjectRemoved:*"], and a Filter matching the prefix images/.
 
-Screenshot placeholder: <img width="776" height="39" alt="Screenshot 2026-07-28 at 17 17 34" src="https://github.com/user-attachments/assets/52483e20-cefe-4bf1-a7ca-804a489f6e32" />
+Screenshot placeholder: 
+
+<img width="776" height="39" alt="Screenshot 2026-07-28 at 17 17 34" src="https://github.com/user-attachments/assets/52483e20-cefe-4bf1-a7ca-804a489f6e32" />
 
 <img width="839" height="623" alt="Screenshot 2026-07-28 at 17 18 07" src="https://github.com/user-attachments/assets/84af29c8-b193-458f-ac1b-bc4c61985615" />
 
