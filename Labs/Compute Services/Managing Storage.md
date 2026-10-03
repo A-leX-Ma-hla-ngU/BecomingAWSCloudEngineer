@@ -10,7 +10,7 @@ This document described the hands‑on journey taken while completing the "Manag
 
 I managed EBS snapshots and synchronized data to Amazon S3. The environment included a VPC with public subnets and two EC2 instances named "Command Host" and "Processor." I used the Command Host to administer resources and the Processor to host the EBS volume whose contents I backed up and synchronized to S3.
 
-Screenshot placeholder: `<img width="915" height="326" alt="Screenshot 2026-07-16 at 20 05 55" src="https://github.com/user-attachments/assets/18b13b25-ac9d-40c8-bef4-215733c09878" />'
+Screenshot placeholder: `<img width="768" height="485" alt="Screenshot 2026-10-03 at 01 24 23" src="https://github.com/user-attachments/assets/eb691ea6-ae8b-4dab-8dd2-fc6d8cc327d7" />'
 
 ---
 
@@ -96,7 +96,7 @@ Screenshot: `<img width="824" height="334" alt="Screenshot 2026-07-27 at 20 38 3
 
 aws ec2 start-instances --instance-ids INSTANCE-ID
 
-Screenshot placeholder: `<img width="827" height="64" alt="Screenshot 2026-07-27 at 20 43 31" src="https://github.com/user-attachments/assets/c916b5f0-53f1-4b10-9cb1-69ddb266620c" />'
+Screenshot : `<img width="827" height="64" alt="Screenshot 2026-07-27 at 20 43 31" src="https://github.com/user-attachments/assets/c916b5f0-53f1-4b10-9cb1-69ddb266620c" />'
 
 `<img width="834" height="403" alt="Screenshot 2026-07-27 at 20 44 13" src="https://github.com/user-attachments/assets/413bebaa-499e-4a94-89dd-d2b0e781685d" />'
 
@@ -127,7 +127,7 @@ Command I ran to view the script:
 
 more /home/ec2-user/snapshotter_v2.py
 
-Screenshot placeholder: `<img width="845" height="608" alt="Screenshot 2026-07-27 at 21 26 09" src="https://github.com/user-attachments/assets/ab53e026-9686-40bc-98ca-06eb5b9564a3" />`
+Screenshot: `<img width="845" height="608" alt="Screenshot 2026-07-27 at 21 26 09" src="https://github.com/user-attachments/assets/ab53e026-9686-40bc-98ca-06eb5b9564a3" />'
 
 - I listed the existing snapshot IDs for the volume to confirm there were multiple snapshots prior to cleanup:
 
@@ -139,7 +139,7 @@ python3.8 snapshotter_v2.py
 
 - The script reported the snapshots it deleted, and I then re-ran the describe-snapshots command to confirm only two SnapshotIds remained.
 
-Screenshot placeholder: `<img width="836" height="154" alt="Screenshot 2026-07-27 at 21 30 23" src="https://github.com/user-attachments/assets/81a7fd2d-b043-4098-9695-6f5c243ec829" />`
+Screenshot placeholder: `<img width="836" height="154" alt="Screenshot 2026-07-27 at 21 30 23" src="https://github.com/user-attachments/assets/81a7fd2d-b043-4098-9695-6f5c243ec829" />'
 
 ---
 
