@@ -109,8 +109,6 @@ Screenshot placeholder: <img width="1601" height="724" alt="Screenshot 2026-09-1
 
 <img width="714" height="69" alt="Screenshot 2026-09-10 at 19 38 20" src="https://github.com/user-attachments/assets/59ad17c4-b27e-4c0b-8249-d524d5c43eee" />
 
-<img width="674" height="90" alt="Screenshot 2026-09-10 at 19 38 36" src="https://github.com/user-attachments/assets/da1c04af-6e39-4090-852c-0821c43310f3" />
-
 ---
 
 ### Step 3 — Creating and configuring the SNS topic
