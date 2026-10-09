@@ -17,7 +17,7 @@ I used the AWS CLI from an EC2 instance to:
 
 Website endpoint (example): http://<bucket-name>.s3-website-us-west-2.amazonaws.com
 
-Screenshot placeholder: `screenshots/architecture_overview.png`
+Screenshot placeholder: <img width="708" height="338" alt="Screenshot 2026-10-09 at 02 32 57" src="https://github.com/user-attachments/assets/f2b02668-92cf-40a4-8c1f-577d78113598" />
 
 ---
 
@@ -51,7 +51,11 @@ Commands I ran (in the instance terminal):
 sudo su -l ec2-user
 pwd
 
-Screenshot placeholder: `screenshots/ssm_instance_connect.png`
+Screenshot placeholder: <img width="777" height="684" alt="Screenshot 2026-10-09 at 02 42 01" src="https://github.com/user-attachments/assets/fbaf286e-a96b-44d3-a692-38e491fc28bb" />
+
+<img width="789" height="323" alt="Screenshot 2026-10-09 at 02 42 22" src="https://github.com/user-attachments/assets/6a2cb546-1a89-4990-a568-08a485ae661b" />
+
+<img width="374" height="104" alt="Screenshot 2026-07-01 at 18 20 03" src="https://github.com/user-attachments/assets/4c7996fa-5d89-4b63-bfaf-bb59f6e765c4" />
 
 ---
 
@@ -60,7 +64,10 @@ Screenshot placeholder: `screenshots/ssm_instance_connect.png`
 - I ran aws configure in the SSH session and entered the credentials provided in the lab: AccessKey, SecretKey, region `us-west-2`, and output format `json`.
 - I verified the configuration by running aws sts get-caller-identity and confirming the returned account and ARN.
 
-Screenshot placeholder: `screenshots/aws_configure_and_identity.png`
+Screenshot placeholder: <img width="585" height="142" alt="Screenshot 2026-10-09 at 02 50 19" src="https://github.com/user-attachments/assets/db08ac66-bac1-4394-9024-927e4edafc2c" />
+
+<img width="790" height="178" alt="Screenshot 2026-10-09 at 02 52 38" src="https://github.com/user-attachments/assets/620e11ae-246b-40f7-b845-310473cb2f76" />
+
 
 ---
 
@@ -72,7 +79,7 @@ aws s3api create-bucket --bucket <my-bucket> --region us-west-2 --create-bucket-
 
 - I verified the command returned a JSON Location entry indicating the bucket URL.
 
-Screenshot placeholder: `screenshots/s3_create_bucket_cli.png`
+Screenshot placeholder: <img width="750" height="153" alt="Screenshot 2026-07-01 at 18 28 56" src="https://github.com/user-attachments/assets/d1b66f5e-c279-4545-a6c5-dbdf762af264" />
 
 ---
 
@@ -94,11 +101,20 @@ aws iam list-policies --query "Policies[?contains(PolicyName,'S3')]"
 
 aws iam attach-user-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess --user-name awsS3user
 
-Screenshot placeholder: `screenshots/iam_create_user_and_attach_policy.png`
+Screenshot placeholder: <img width="691" height="160" alt="Screenshot 2026-07-01 at 18 36 38" src="https://github.com/user-attachments/assets/e87a0ab0-94e3-46ad-bd5d-123a9a6e0abe" />
+
+<img width="767" height="174" alt="Screenshot 2026-07-01 at 18 38 29" src="https://github.com/user-attachments/assets/8b688903-a6ee-4504-bd8f-02fd20f24824" />
+
 
 - I signed out of the Management Console and signed back in as the new IAM user to confirm the sign‑in worked and to inspect the S3 console as the new user.
 
-Screenshot placeholder: `screenshots/iam_signed_in_as_awsS3user.png`
+Screenshot placeholder: <img width="381" height="312" alt="Screenshot 2026-07-01 at 18 43 10" src="https://github.com/user-attachments/assets/0133382a-aa12-4681-97a0-b44aeea50ea2" />
+
+<img width="731" height="488" alt="Screenshot 2026-07-01 at 18 46 05" src="https://github.com/user-attachments/assets/a5630b06-4787-4465-83eb-88ffe64bcc39" />
+
+<img width="764" height="428" alt="Screenshot 2026-07-01 at 18 46 33" src="https://github.com/user-attachments/assets/26ff65cf-661d-4d8f-bb15-c269ac6f0552" />
+
+
 
 Notes: In the lab I copied the 12‑digit AWS Account ID when required and confirmed that the awsS3user could see the S3 console (permissions were granted by the attached managed policy).
 
@@ -109,7 +125,23 @@ Notes: In the lab I copied the 12‑digit AWS Account ID when required and confi
 - I opened the S3 bucket's Permissions tab in the console and edited Block Public Access to disable the setting that blocked all public access.
 - I changed Object Ownership to enable ACLs if the lab required ACL-based public access and acknowledged the change.
 
-Screenshot placeholder: `screenshots/s3_permissions_edit.png`
+Screenshot placeholder: <img width="801" height="466" alt="Screenshot 2026-07-01 at 19 20 43" src="https://github.com/user-attachments/assets/c9de6821-a9c0-499a-b28c-76d6c01bff77" />
+
+<img width="1680" height="1050" alt="Screenshot 2026-07-01 at 19 36 53" src="https://github.com/user-attachments/assets/6d5b647a-643d-48be-9455-8a7419c7a7e2" />
+
+<img width="780" height="677" alt="Screenshot 2026-07-01 at 20 36 36" src="https://github.com/user-attachments/assets/e9715edb-62b3-4a41-a099-ecf4f3cc93b6" />
+
+<img width="759" height="654" alt="Screenshot 2026-07-01 at 20 37 06" src="https://github.com/user-attachments/assets/87c48227-1ab4-4b86-b4ca-ee80cb89e501" />
+
+<img width="773" height="383" alt="Screenshot 2026-07-01 at 20 37 30" src="https://github.com/user-attachments/assets/50c45f6f-fec8-4145-a653-677fed513f0e" />
+
+<img width="779" height="309" alt="Screenshot 2026-07-01 at 20 37 49" src="https://github.com/user-attachments/assets/aeb0d802-8393-4cb3-b0b0-864755562cc2" />
+
+<img width="793" height="561" alt="Screenshot 2026-07-01 at 20 39 12" src="https://github.com/user-attachments/assets/7bddba93-6f7f-4e54-bee3-10f6bb2e3eaf" />
+
+<img width="727" height="405" alt="Screenshot 2026-07-01 at 20 41 33" src="https://github.com/user-attachments/assets/15391d57-6cf8-4b32-8e2d-295ec0a0ac72" />
+
+<img width="799" height="286" alt="Screenshot 2026-07-01 at 20 42 02" src="https://github.com/user-attachments/assets/d2de8c00-57e0-4373-b1c8-2d0437896fbf" />
 
 Important: For production environments, I noted that making buckets public must be reviewed carefully for security and compliance.
 
@@ -128,7 +160,15 @@ ls
 
 I confirmed that index.html and the css and images directories were present.
 
-Screenshot placeholder: `screenshots/extracted_website_files.png`
+Screenshot placeholder: <img width="657" height="56" alt="Screenshot 2026-07-01 at 20 46 11" src="https://github.com/user-attachments/assets/5bfc5bee-5f67-4be7-a448-b6ea82099f7d" />
+
+<img width="869" height="59" alt="Screenshot 2026-07-01 at 20 49 22" src="https://github.com/user-attachments/assets/3ef8778d-3cd3-464c-95b8-8735ef1552c8" />
+
+<img width="870" height="367" alt="Screenshot 2026-07-01 at 20 49 51" src="https://github.com/user-attachments/assets/09621067-2752-4039-a9b1-ba3ffa3084d9" />
+
+<img width="798" height="61" alt="Screenshot 2026-07-01 at 20 51 55" src="https://github.com/user-attachments/assets/995adbec-2472-4784-8004-bb88422c18bd" />
+
+<img width="613" height="76" alt="Screenshot 2026-07-01 at 20 52 14" src="https://github.com/user-attachments/assets/39ca0967-d890-491b-9c83-77f86aa03828" />
 
 ---
 
@@ -148,8 +188,13 @@ aws s3 ls s3://<my-bucket>/
 
 - In the S3 console I opened the bucket Properties and confirmed that Static website hosting was Enabled and I opened the Bucket website endpoint URL to view the Café & Bakery site.
 
-Screenshot placeholder: `screenshots/s3_website_enabled_and_upload.png`
-Screenshot placeholder: `screenshots/cafe_website_initial_view.png`
+Screenshot placeholder: <img width="772" height="381" alt="Screenshot 2026-07-01 at 20 59 59" src="https://github.com/user-attachments/assets/e697d5da-c8f7-44af-9dda-d7a2067c2fdf" />
+<img width="292" height="318" alt="Screenshot 2026-07-01 at 21 02 20" src="https://github.com/user-attachments/assets/b91951b0-20f1-4445-81cf-08e63fdebbdb" />
+
+Screenshot placeholder: <img width="757" height="143" alt="Screenshot 2026-07-01 at 21 02 59" src="https://github.com/user-attachments/assets/543318aa-ced9-4a8b-96bb-1f05e7404741" />
+
+<img width="1680" height="1050" alt="Screenshot 2026-07-01 at 21 07 17" src="https://github.com/user-attachments/assets/868c03cd-b31d-4786-a8ec-0aae9767e8fe" />
+
 
 ---
 
@@ -178,8 +223,27 @@ chmod +x update-website.sh
 
 - I edited the local index.html using vi to change background color values and re-ran the update script to push the change. I refreshed the site in the browser to confirm the update.
 
-Screenshot placeholder: `screenshots/update_website_script_and_edit.png`
-Screenshot placeholder: `screenshots/cafe_website_after_update.png`
+Screenshot placeholder: <img width="840" height="753" alt="Screenshot 2026-07-01 at 21 21 00" src="https://github.com/user-attachments/assets/ee0cdc0a-7305-4064-b23b-8ac0dfbc709c" />
+
+Screenshot placeholder: <img width="838" height="56" alt="Screenshot 2026-07-01 at 21 30 41" src="https://github.com/user-attachments/assets/f46a8735-9f62-4304-a45d-86a433b79a68" />
+
+<img width="823" height="158" alt="Screenshot 2026-07-01 at 21 36 25" src="https://github.com/user-attachments/assets/8601509e-21fe-492a-aa04-c0abe34de223" />
+
+<img width="842" height="746" alt="Screenshot 2026-07-01 at 21 38 14" src="https://github.com/user-attachments/assets/e657a7bf-b562-42ef-8b58-b3817ab9b4ed" />
+
+<img width="847" height="755" alt="Screenshot 2026-07-01 at 21 38 39" src="https://github.com/user-attachments/assets/e9161c47-5027-4cf0-940e-a593fdc91662" />
+
+<img width="626" height="44" alt="Screenshot 2026-07-01 at 21 39 06" src="https://github.com/user-attachments/assets/79854c60-09de-4b89-a97d-9d6cdc192267" />
+
+<img width="854" height="544" alt="Screenshot 2026-07-01 at 21 39 20" src="https://github.com/user-attachments/assets/0e7174a7-f206-444a-912a-1d9cfdecb24d" />
+
+<img width="495" height="43" alt="Screenshot 2026-07-01 at 21 40 58" src="https://github.com/user-attachments/assets/57848328-998b-4f04-897f-99ccb44689ef" />
+
+
+<img width="1680" height="1050" alt="Screenshot 2026-07-01 at 21 40 26" src="https://github.com/user-attachments/assets/a3492417-766f-4f82-8ee3-744d5e1329d5" />
+
+<img width="1680" height="1050" alt="Screenshot 2026-07-01 at 21 40 33" src="https://github.com/user-attachments/assets/460ff5a4-85b1-4484-86b4-33ee40ff0ad0" />
+
 
 ---
 
@@ -188,8 +252,6 @@ Screenshot placeholder: `screenshots/cafe_website_after_update.png`
 - If the bucket did not appear in the awsS3user console view, I refreshed the page and verified the user's permissions were correctly attached.
 - If static website hosting did not appear enabled after running the CLI command, I verified the command syntax and region, and checked bucket properties in the console.
 - If objects were inaccessible in the browser, I checked object ACLs and bucket public access settings, and I verified that the objects had public-read ACL set when uploaded.
-
-Screenshot placeholder: `screenshots/troubleshooting_checks.png`
 
 ---
 
