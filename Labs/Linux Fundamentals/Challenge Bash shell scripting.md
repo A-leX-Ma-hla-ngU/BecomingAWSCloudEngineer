@@ -45,10 +45,7 @@ ssh -i labsuser.pem ec2-user@<public-ip>
 6. I accepted the host fingerprint when prompted. Because I used a key pair for authentication, I was not prompted for a password.
 
 > Screenshot placeholder: SSH connection terminal
-> 
-> ![SSH Terminal placeholder](images/challenge_ssh.png)
->
-> Caption: Insert the SSH connection screenshot here.
+<img width="788" height="272" alt="Screenshot 2026-06-28 at 19 24 47" src="https://github.com/user-attachments/assets/b916e7eb-e0af-4a37-bcd7-84843612e7fa" />
 
 ---
 
@@ -80,36 +77,15 @@ The solution was robust to missing files and to gaps in numbering: it always sta
 Below was an example implementation I used and tested. It was included here so others could reproduce or adapt it.
 
 ```bash
-#!/usr/bin/env bash
-# create_25.sh — create 25 empty files with prefix and sequential numbers
-
-PREFIX="alex"        # replace 'alex' with your chosen name/prefix
-COUNT=25
-
-auto_max() {
-  # Find files matching prefix followed by a number, extract numeric suffix, print max
-  shopt -s nullglob
-  max=0
-  for f in "${PREFIX}"*[!~]; do
-    # Extract numeric suffix: remove prefix, non-digits ignored
-    num=${f#${PREFIX}}
-    # Only consider purely numeric suffixes
-    if [[ "$num" =~ ^[0-9]+$ ]]; then
-      (( num > max )) && max=$num
-    fi
-  done
-  echo "$max"
-}
-
-max_index=$(auto_max)
-start=$((max_index + 1))
-end=$((start + COUNT - 1))
-
-for i in $(seq "$start" "$end"); do
-  touch "${PREFIX}${i}"
+#!/bin/bash
+last=$(1s | grep alex | sed 's/^alex//' | sort -n | tail -n 1)
+last=${last:-0}
+start=$((last + 1)) end=$( (start + 24))
+for i in $(seq $start Send)
+do
+touch
+alex$i
 done
-
-echo "Created ${COUNT} files: ${PREFIX}${start} .. ${PREFIX}${end}"
 ```
 
 Notes about the example above:
@@ -118,10 +94,10 @@ Notes about the example above:
 - The script used only POSIX-friendly constructs (with Bash-specific shopt and regex checks) and it created files with `touch` so they were 0 bytes.
 
 > Screenshot placeholder: script open in editor
-> 
-> ![script edit placeholder](images/challenge_script_edit.png)
->
-> Caption: Insert a screenshot showing the script content in an editor (vi, nano, or code editor).
+<img width="799" height="870" alt="Screenshot 2026-06-28 at 21 00 23" src="https://github.com/user-attachments/assets/9f540c25-4432-4bec-9299-a6a8272fde20" />
+
+<img width="814" height="873" alt="Screenshot 2026-06-28 at 21 01 06" src="https://github.com/user-attachments/assets/15caaab6-724d-49a8-868e-95a95cc30578" />
+
 
 ---
 
@@ -142,15 +118,25 @@ Expected behavior and sample output I observed:
 - On subsequent run, files `alex26`..`alex50` were created.
 
 > Screenshot placeholder: script run output
-> 
-> ![script run placeholder](images/challenge_run_output.png)
->
-> Caption: Insert the terminal screenshot showing the script output and confirmation message.
+
+<img width="520" height="73" alt="Screenshot 2026-06-28 at 21 02 18" src="https://github.com/user-attachments/assets/a7ae9f62-9715-4e53-890d-72a59f1fe090" />
+
+<img width="697" height="56" alt="Screenshot 2026-06-28 at 21 02 43" src="https://github.com/user-attachments/assets/3d6fae40-0759-4760-b717-7fd98c6298da" />
+
+<img width="616" height="69" alt="Screenshot 2026-06-28 at 21 03 45" src="https://github.com/user-attachments/assets/099bf87c-8128-41fd-ac23-b386bbd1f842" />
+
 
 > Screenshot placeholder: ls -l validation
-> 
-> ![ls validation placeholder](images/challenge_ls.png)
->
+ 
+<img width="594" height="44" alt="Screenshot 2026-06-28 at 21 04 30" src="https://github.com/user-attachments/assets/34f7a4dc-acea-4fd1-aeae-f06ac49671d7" />
+
+<img width="641" height="168" alt="Screenshot 2026-06-28 at 21 05 03" src="https://github.com/user-attachments/assets/9039e6b7-25ea-4303-992e-fafad17d425f" />
+
+<img width="765" height="228" alt="Screenshot 2026-06-28 at 21 05 57" src="https://github.com/user-attachments/assets/c2fa1805-61b5-44d3-92c6-d414c5b52703" />
+
+<img width="558" height="32" alt="Screenshot 2026-06-28 at 21 10 27" src="https://github.com/user-attachments/assets/3c2dd5dd-50e2-453f-8945-eddb1322e95e" />
+
+
 > Caption: Insert the `ls -l` screenshot showing the created files and 0 byte sizes.
 
 ---
