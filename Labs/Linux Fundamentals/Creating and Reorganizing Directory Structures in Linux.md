@@ -50,8 +50,7 @@ The lab credentials were accessed through the Details dropdown menu:
 4. Made a note of the PublicIP address for SSH connection
 5. Exited the Details panel by selecting the X
 
-**[Screenshot: Details Dropdown - Credentials Window]**
-> *Place screenshot showing the credentials dropdown with PublicIP and Download PEM button here*
+<img width="416" height="171" alt="Screenshot 2026-06-25 at 21 13 12" src="https://github.com/user-attachments/assets/cf939fbe-91f7-420a-a366-8da70e38408c" />
 
 #### Step 2: Terminal Navigation and PEM Configuration
 
@@ -71,8 +70,7 @@ chmod 400 labsuser.pem
 
 This command set the file permissions to read-only for the owner, which was required for secure SSH authentication.
 
-**[Screenshot: Terminal - Directory Navigation and chmod Command]**
-> *Place screenshot showing cd and chmod command execution here*
+<img width="472" height="53" alt="Screenshot 2026-06-25 at 21 16 07" src="https://github.com/user-attachments/assets/3e031d3c-8b20-4900-ad0f-077478a9933c" />
 
 #### Step 3: SSH Connection Establishment
 
@@ -85,10 +83,13 @@ ssh -i labsuser.pem ec2-user@<public-ip>
 When prompted to allow the first connection, "yes" was typed to confirm.
 
 **[Screenshot: SSH Connection Prompt]**
-> *Place screenshot showing SSH host verification prompt here*
+
+<img width="717" height="75" alt="Screenshot 2026-06-25 at 21 16 13" src="https://github.com/user-attachments/assets/97d6a466-39b4-41a4-81b2-65b862866f43" />
+
+<img width="797" height="112" alt="Screenshot 2026-06-25 at 21 16 42" src="https://github.com/user-attachments/assets/72cbafc6-e2a2-4397-a6ea-4c28419e12fc" />
 
 **[Screenshot: Successful SSH Connection]**
-> *Place screenshot showing successful connection with ec2-user terminal prompt here*
+<img width="797" height="112" alt="Screenshot 2026-06-25 at 21 16 42" src="https://github.com/user-attachments/assets/7157d05e-7c35-40d4-9c57-399576523b07" />
 
 ---
 
@@ -114,9 +115,7 @@ If not in the home directory, navigation was performed:
 ```bash
 cd /home/ec2-user
 ```
-
-**[Screenshot: pwd Command - Home Directory Verified]**
-> *Place screenshot showing the /home/ec2-user directory confirmation here*
+<img width="523" height="53" alt="Screenshot 2026-06-25 at 21 18 37" src="https://github.com/user-attachments/assets/0bad3666-cc7a-4729-8790-65015bae13c8" />
 
 ---
 
@@ -152,7 +151,7 @@ mkdir CompanyA
 This command created a new directory named "CompanyA" in the current location (/home/ec2-user).
 
 **[Screenshot: mkdir CompanyA Command]**
-> *Place screenshot showing the top-level directory creation here*
+<img width="464" height="29" alt="Screenshot 2026-06-25 at 21 19 03" src="https://github.com/user-attachments/assets/dad0c5b1-cb4b-4e03-adb0-2bff990f7faa" />
 
 ### Step 2: Navigating to CompanyA Directory
 
@@ -165,7 +164,7 @@ cd CompanyA
 This command changed the working directory to the newly created CompanyA folder.
 
 **[Screenshot: cd CompanyA Command]**
-> *Place screenshot showing navigation into CompanyA here*
+<img width="417" height="48" alt="Screenshot 2026-06-25 at 21 25 00" src="https://github.com/user-attachments/assets/054fe9b0-6dda-4984-9132-8070e0cb5157" />
 
 ### Step 3: Creating Subdirectories
 
@@ -178,8 +177,7 @@ mkdir Finance HR Management
 This command created all three folders (Finance, HR, and Management) simultaneously within the CompanyA directory.
 
 **[Screenshot: mkdir Finance HR Management Command]**
-> *Place screenshot showing subdirectory creation here*
-
+<img width="672" height="25" alt="Screenshot 2026-06-25 at 21 20 07" src="https://github.com/user-attachments/assets/899336ab-1f05-4367-94d2-285b074325f5" />
 ### Step 4: Verifying Subdirectories
 
 The folder creation was validated:
@@ -196,7 +194,7 @@ Finance  HR  Management
 All three subdirectories were confirmed to be successfully created.
 
 **[Screenshot: ls Command - Subdirectories Verified]**
-> *Place screenshot showing the three folders listed here*
+<img width="469" height="44" alt="Screenshot 2026-06-25 at 21 20 16" src="https://github.com/user-attachments/assets/d8b05d3b-d008-4829-b4fc-25c63fa669ba" />
 
 ### Step 5: Creating Files in the HR Directory
 
@@ -226,7 +224,7 @@ Assessments.csv  TrialPeriod.csv
 Both files were confirmed to be successfully created in the HR directory.
 
 **[Screenshot: touch Command - Files Created in HR]**
-> *Place screenshot showing the two HR CSV files here*
+<img width="685" height="30" alt="Screenshot 2026-06-25 at 21 21 53" src="https://github.com/user-attachments/assets/186a13b3-e5e0-4212-babd-9bff36fc8c96" />
 
 ### Step 6: Creating Files in the Finance Directory
 
@@ -258,7 +256,7 @@ Salary.csv  ProfitAndLossStatements.csv
 Both files were confirmed to be successfully created in the Finance directory.
 
 **[Screenshot: touch Command - Files Created in Finance]**
-> *Place screenshot showing the Finance CSV files here*
+<img width="812" height="29" alt="Screenshot 2026-06-25 at 21 23 41" src="https://github.com/user-attachments/assets/027e7fa8-07f1-4e43-974d-bc58782dd7e6" />
 
 ### Step 7: Creating Files in the Management Directory
 
@@ -292,7 +290,8 @@ Managers.csv  Schedule.csv
 Both files were confirmed to be successfully created in the Management directory.
 
 **[Screenshot: touch Command with Path - Files Created in Management]**
-> *Place screenshot showing files created via relative path here*
+<img width="811" height="46" alt="Screenshot 2026-06-25 at 21 25 55" src="https://github.com/user-attachments/assets/a1ab056d-8c4a-4ee3-a87b-2e653123c225" /><img width="811" height="46" alt="Screenshot 2026-06-25 at 21 25 55" src="https://github.com/user-attachments/assets/f37d86d2-bc26-4f80-9204-b2f32e9ca6e0" />
+
 
 ### Step 8: Understanding Path Methods
 
@@ -314,7 +313,10 @@ Throughout this task, two different approaches to path navigation were demonstra
 - `touch ../Management/file.csv` - Create file in sibling directory
 
 **[Screenshot: Terminal showing both path methods]**
-> *Place screenshot demonstrating both direct and relative path usage here*
+<img width="811" height="46" alt="Screenshot 2026-06-25 at 21 25 55" src="https://github.com/user-attachments/assets/29af7f34-8cbe-4b3c-b2b6-c23f9a9f8608" />
+
+<img width="812" height="29" alt="Screenshot 2026-06-25 at 21 23 41" src="https://github.com/user-attachments/assets/c5e3566b-c482-4618-b2ab-07c4d51599bb" />
+
 
 ### Step 9: Complete Structure Validation
 
@@ -361,7 +363,7 @@ drwxr-xr-x 5 ec2-user root     49 Aug 10 13:36 ..
 The complete organizational structure was verified with all directories and files properly created.
 
 **[Screenshot: ls -laR Complete Structure Output]**
-> *Place screenshot showing the complete recursive directory listing here*
+<img width="779" height="614" alt="Screenshot 2026-06-25 at 21 28 24" src="https://github.com/user-attachments/assets/8456e5f4-cee7-4044-bacd-a22e88dcea70" />
 
 ### Key Concepts Learned in Task 2
 
@@ -399,7 +401,10 @@ After several weeks, organizational changes required restructuring the directory
 ```
 
 **[Screenshot: Organizational Restructuring Diagram]**
-> *Place screenshot showing before and after structure comparison here*
+<img width="779" height="614" alt="Screenshot 2026-06-25 at 21 28 24" src="https://github.com/user-attachments/assets/c8bd081c-1cf7-42e5-9ad2-2b5ce6940579" />
+
+<img width="469" height="150" alt="Screenshot 2026-06-25 at 21 41 08" src="https://github.com/user-attachments/assets/103285b8-b2ce-4be1-96a3-99a08dd345b2" />
+
 
 ### Step 1: Verifying Current Directory
 
