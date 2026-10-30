@@ -45,9 +45,8 @@ ssh -i labsuser.pem ec2-user@<public-ip>
 
 > Screenshot placeholder: SSH connection terminal
 >
-> ![SSH Terminal placeholder](images/bash_scripts_ssh.png)
->
-> Caption: Insert the SSH connection screenshot here.
+> <img width="811" height="264" alt="Screenshot 2026-06-28 at 14 01 47" src="https://github.com/user-attachments/assets/7d29fa32-0596-4f44-9dfe-fb70ddd4a25a" />
+
 
 ## Task: Write a shell script to automate backups
 
@@ -60,11 +59,7 @@ pwd
 # Expected: /home/ec2-user/
 ```
 
-> Screenshot placeholder: pwd output
->
-> ![pwd placeholder](images/bash_scripts_pwd.png)
->
-> Caption: Insert the terminal screenshot confirming the working directory.
+> <img width="403" height="69" alt="Screenshot 2026-06-28 at 14 02 05" src="https://github.com/user-attachments/assets/8c842f60-352f-4654-bb4d-451652d26071" />
 
 2. I created the script file and made it executable:
 
@@ -75,9 +70,11 @@ sudo chmod 755 backup.sh
 
 > Screenshot placeholder: touch and chmod
 >
-> ![touch chmod placeholder](images/backup_touch_chmod.png)
->
-> Caption: Insert the terminal screenshot showing backup.sh creation and chmod 755 applied.
+<img width="491" height="27" alt="Screenshot 2026-06-28 at 14 02 21" src="https://github.com/user-attachments/assets/260d46f3-6eff-4920-9da0-0ed1c2d95d47" />
+
+<img width="453" height="73" alt="Screenshot 2026-06-28 at 14 02 44" src="https://github.com/user-attachments/assets/bf2d2765-d9d1-45c1-ab53-b22ec955d135" />
+
+<img width="544" height="56" alt="Screenshot 2026-06-28 at 14 05 41" src="https://github.com/user-attachments/assets/4fb87ee7-4e85-4af7-ae71-71deb523d26c" />
 
 3. I opened the script in a text editor (vi was used in the lab instructions) and added the script contents.
 
@@ -92,11 +89,13 @@ tar -csvpzf "$BACKUP" /home/$USER/CompanyA
 
 - I saved and exited vi with `Esc` then `:wq`.
 
-> Screenshot placeholder: vi editing backup.sh
->
-> ![vi edit placeholder](images/backup_vi_edit.png)
->
-> Caption: Insert a screenshot of backup.sh open in vi with the script content visible.
+<img width="438" height="32" alt="Screenshot 2026-06-28 at 14 06 09" src="https://github.com/user-attachments/assets/87597918-5b88-497f-99db-1e9d81db4c84" />
+
+<img width="805" height="894" alt="Screenshot 2026-06-28 at 14 06 22" src="https://github.com/user-attachments/assets/999fb710-e308-4a60-af4d-7c26d50a588b" />
+
+<img width="816" height="894" alt="Screenshot 2026-06-28 at 14 06 29" src="https://github.com/user-attachments/assets/80ae041e-85bd-41b1-8c7e-dd636a0d6e4e" />
+
+<img width="809" height="885" alt="Screenshot 2026-06-28 at 14 12 59" src="https://github.com/user-attachments/assets/30a65732-1bd8-4615-a07a-b85bd31522a1" />
 
 4. I ran the script from the home directory:
 
@@ -107,10 +106,8 @@ tar -csvpzf "$BACKUP" /home/$USER/CompanyA
 - Expected output: tar printed the files being archived and a message about removing the leading `/` from member names.
 
 > Screenshot placeholder: backup.sh run output
->
-> ![backup output placeholder](images/backup_run_output.png)
->
-> Caption: Insert the terminal screenshot showing tar verbose output while creating the archive.
+<img width="556" height="349" alt="Screenshot 2026-06-28 at 14 14 13" src="https://github.com/user-attachments/assets/dfe02f21-4842-4b96-b3fa-9c45f068883b" />
+
 
 Example expected output excerpt:
 
@@ -131,10 +128,8 @@ ls backups/
 ```
 
 > Screenshot placeholder: ls backups
->
-> ![ls backups placeholder](images/backups_ls.png)
->
-> Caption: Insert the terminal screenshot showing the timestamped archive in backups/.
+<img width="562" height="64" alt="Screenshot 2026-06-28 at 14 14 34" src="https://github.com/user-attachments/assets/0e443e27-2c02-4b3e-9f05-847a2bbb4d23" />
+
 
 ## Notes and observations
 
