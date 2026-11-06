@@ -26,7 +26,11 @@ Before I began, the following resources had been provided:
 
 Placeholder screenshot:
 
-![Screenshot: Lab provisioning overview](screenshots/lab-provisioning-overview.png)
+<img width="1156" height="607" alt="Screenshot 2026-08-03 at 12 19 08" src="https://github.com/user-attachments/assets/397d55d9-0574-430d-968f-3fc852f7153c" />
+
+<img width="1003" height="562" alt="Screenshot 2026-08-03 at 12 19 28" src="https://github.com/user-attachments/assets/4b77c9d5-cd0e-41fa-bacc-c3036790d61d" />
+
+
 
 ---
 
@@ -40,7 +44,13 @@ I connected to the Command Host using the AWS Console and Session Manager to acc
 
 Screenshot placeholder: Command Host selected in the EC2 console and Session Manager button.
 
-![Screenshot: Command Host Session Manager](screenshots/command-host-session.png)
+<img width="796" height="198" alt="Screenshot 2026-08-03 at 12 24 21" src="https://github.com/user-attachments/assets/c42d8137-7e87-40a8-9243-ec9ba9d54e71" />
+
+<img width="801" height="697" alt="Screenshot 2026-08-03 at 12 24 32" src="https://github.com/user-attachments/assets/b0cde1b3-a502-41f2-a8e7-3c375544cfbd" />
+
+<img width="419" height="86" alt="Screenshot 2026-08-03 at 12 25 01" src="https://github.com/user-attachments/assets/76f75ffd-3509-4d4c-9b51-368322d35d8b" />
+
+
 
 4. In the terminal, I prepared the environment by switching to the root user and moving to the ec2-user home directory:
 
@@ -52,12 +62,12 @@ cd /home/ec2-user/
 5. I connected to the database instance using the MySQL client with the provided credentials:
 
 ```bash
-mysql -u root --password='re:St@rt!9'
+mysql -u root --password='....'
 ```
 
 Screenshot placeholder: Active MySQL prompt after successful connection.
 
-![Screenshot: MySQL prompt connected](screenshots/mysql-connected.png)
+<img width="841" height="219" alt="Screenshot 2026-08-03 at 12 29 31" src="https://github.com/user-attachments/assets/168cab32-7c89-41df-b1f9-b6b018f0b540" />
 
 6. I verified available databases with:
 
@@ -67,7 +77,7 @@ SHOW DATABASES;
 
 Screenshot placeholder: SHOW DATABASES output highlighting the `world` database.
 
-![Screenshot: SHOW DATABASES output](screenshots/show-databases.png)
+<img width="384" height="293" alt="Screenshot 2026-08-03 at 12 30 03" src="https://github.com/user-attachments/assets/75fb6ca7-15d8-40dc-99ad-ca2d68c4d94d" />
 
 ---
 
@@ -83,7 +93,10 @@ SELECT * FROM world.country;
 
 Screenshot placeholder: Initial SELECT * output for `world.country`.
 
-![Screenshot: SELECT * FROM world.country](screenshots/select-all-country.png)
+<img width="844" height="432" alt="Screenshot 2026-08-03 at 12 32 40" src="https://github.com/user-attachments/assets/af71adfa-a69b-462c-bfbe-43921d6a6526" />
+
+<img width="836" height="438" alt="Screenshot 2026-08-03 at 12 32 57" src="https://github.com/user-attachments/assets/02d74420-e80d-416b-b657-f4f5632daf4a" />
+
 
 2. I returned records for the Region "Australia and New Zealand" ordered by population (descending) to observe the distribution:
 
@@ -96,7 +109,9 @@ ORDER BY Population DESC;
 
 Screenshot placeholder: SELECT for Australia and New Zealand ordered by population.
 
-![Screenshot: SELECT region australia and new zealand](screenshots/select-region-australia.png)
+<img width="823" height="57" alt="Screenshot 2026-08-03 at 12 35 39" src="https://github.com/user-attachments/assets/13fbf310-1e5f-47fd-ad3c-9fc21a2e8e8f" />
+
+<img width="851" height="320" alt="Screenshot 2026-08-03 at 12 43 34" src="https://github.com/user-attachments/assets/d6b272a8-f8f6-4ffa-9a66-7408018e246e" />
 
 3. I used GROUP BY with SUM() to compute the total population for the Australia and New Zealand region:
 
@@ -112,7 +127,13 @@ I observed that the WHERE clause limited aggregation to only the specified regio
 
 Screenshot placeholder: GROUP BY + SUM() result.
 
-![Screenshot: GROUP BY SUM result](screenshots/group-by-sum.png)
+<img width="827" height="545" alt="Screenshot 2026-08-03 at 12 51 34" src="https://github.com/user-attachments/assets/4f068231-ae3b-4dbb-be17-3b5562ad3326" />
+
+
+<img width="820" height="78" alt="Screenshot 2026-08-03 at 12 46 00" src="https://github.com/user-attachments/assets/4a176012-6542-4acb-babf-45aa1d715268" />
+
+<img width="838" height="266" alt="Screenshot 2026-08-03 at 12 48 47" src="https://github.com/user-attachments/assets/7d3a2f64-8ee3-47e0-8aa5-87f610f550dd" />
+
 
 4. I used a windowed SUM() with OVER() and PARTITION BY to generate a running total of population within the region. The running total showed cumulative population as rows were ordered by Population:
 
@@ -125,7 +146,7 @@ WHERE Region = 'Australia and New Zealand';
 
 Screenshot placeholder: Running total using SUM() OVER(PARTITION BY ...).
 
-![Screenshot: Running total OVER result](screenshots/running-total-over.png)
+<img width="827" height="545" alt="Screenshot 2026-08-03 at 12 51 34" src="https://github.com/user-attachments/assets/0d3b4c79-1379-4743-96c3-506d7f5fd6c2" />
 
 5. I combined the running total with the RANK() window function to produce a rank for each country within the region based on population:
 
@@ -139,7 +160,7 @@ WHERE Region = 'Australia and New Zealand';
 
 Screenshot placeholder: Combined SUM() OVER and RANK() OVER result.
 
-![Screenshot: RANK and OVER result](screenshots/rank-over.png)
+<img width="834" height="567" alt="Screenshot 2026-08-03 at 12 53 02" src="https://github.com/user-attachments/assets/8d12ca1e-0738-4c6e-a2bd-f25c3327d49e" />
 
 Notes: I changed the RANK() ordering to DESC to rank countries from largest to smallest population, which matched the challenge intent.
 
@@ -158,7 +179,9 @@ ORDER BY Region, RegionRank;
 
 Screenshot placeholder: Challenge query output showing region ranks.
 
-![Screenshot: Challenge rank by region](screenshots/challenge-rank-by-region.png)
+<img width="832" height="601" alt="Screenshot 2026-08-03 at 13 09 58" src="https://github.com/user-attachments/assets/3033ada4-7721-48e0-b207-9f7d1ce66414" />
+
+<img width="836" height="707" alt="Screenshot 2026-08-03 at 13 09 35" src="https://github.com/user-attachments/assets/ad2825c2-c4bc-4b98-bf84-2ed7cf4e8a57" />
 
 ---
 
