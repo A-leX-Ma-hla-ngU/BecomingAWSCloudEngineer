@@ -39,16 +39,59 @@ In the AWS Management Console, I opened **RDS** > **Databases**, selected **Crea
 I created the database and waited for the cluster to finish provisioning. The lab did not require an Aurora replica or Multi-AZ deployment. I noted that production environments generally require careful availability and encryption decisions; the lab settings were not production recommendations. When the suggested add-ons dialog appeared, I closed it.
 
 > **Screenshot placeholder — Aurora creation settings:** Add a screenshot of the configured database options. Do not show credentials.
->
+
+<img width="391" height="113" alt="Screenshot 2026-08-03 at 19 12 11" src="https://github.com/user-attachments/assets/698369e3-3c50-4d97-b471-41101537282c" />
+
+<img width="371" height="255" alt="Screenshot 2026-08-03 at 19 14 13" src="https://github.com/user-attachments/assets/0391a3b6-55b1-45f3-b30f-e6940169d910" />
+
+<img width="422" height="332" alt="Screenshot 2026-08-03 at 19 15 03" src="https://github.com/user-attachments/assets/ef5b88b8-5e42-41d7-ad6a-6dca9b6d4e8f" />
+
+<img width="685" height="375" alt="Screenshot 2026-08-03 at 19 18 31" src="https://github.com/user-attachments/assets/26b30caa-228c-4cf8-a02d-a9ef3158c7e8" />
+
+<img width="734" height="547" alt="Screenshot 2026-08-03 at 19 21 52" src="https://github.com/user-attachments/assets/61f6f8e2-dcdb-47dd-bff2-c653aeb9d08d" />
+
+<img width="710" height="534" alt="Screenshot 2026-08-03 at 19 22 22" src="https://github.com/user-attachments/assets/fb587272-be8d-48eb-9a74-7fd8fca1067c" />
+
+<img width="713" height="252" alt="Screenshot 2026-08-03 at 19 23 02" src="https://github.com/user-attachments/assets/836a5fbc-eb82-47d0-ba29-d1a4ecb28685" />
+
+<img width="699" height="483" alt="Screenshot 2026-08-03 at 19 23 44" src="https://github.com/user-attachments/assets/1cbe85e6-42ec-4066-a0d9-af6e6fe80139" />
+
+<img width="700" height="296" alt="Screenshot 2026-08-03 at 19 24 04" src="https://github.com/user-attachments/assets/2fa77a5c-7c3e-46d7-ae91-bad6b7fc330e" />
+
+<img width="671" height="275" alt="Screenshot 2026-08-03 at 19 50 59" src="https://github.com/user-attachments/assets/7d61bf31-82df-4cf1-a781-27da95372791" />
+
+<img width="702" height="252" alt="Screenshot 2026-08-03 at 19 51 30" src="https://github.com/user-attachments/assets/ddedf89f-c58e-4c71-8c85-26ae9b49c5a5" />
+
+<img width="686" height="408" alt="Screenshot 2026-08-03 at 19 59 06" src="https://github.com/user-attachments/assets/7d0a2efc-c8ee-4901-b15e-122868d6e91e" />
+
+<img width="718" height="697" alt="Screenshot 2026-08-03 at 20 05 43" src="https://github.com/user-attachments/assets/f719e96f-4f6a-40aa-ba7c-72bf7e1b676a" />
+
+
 > **Screenshot placeholder — Aurora database created:** Add a screenshot showing the successful creation message or database status.
+
+<img width="707" height="601" alt="Screenshot 2026-08-03 at 20 06 51" src="https://github.com/user-attachments/assets/7e41396e-229b-4473-86bc-0b2a13f3d22d" />
+
+<img width="725" height="612" alt="Screenshot 2026-08-03 at 20 07 30" src="https://github.com/user-attachments/assets/7387668e-9271-4e2d-8e7f-daea2be603d8" />
+
+<img width="1297" height="368" alt="Screenshot 2026-08-03 at 20 10 25" src="https://github.com/user-attachments/assets/35dc73e9-8e21-409c-bbfb-bb2c871671ef" />
+
+<img width="1279" height="375" alt="Screenshot 2026-08-03 at 20 10 33" src="https://github.com/user-attachments/assets/1cb260bf-1629-4c0d-9896-260d28bca7ea" />
+
 
 ## Task 2: Connected to the Amazon EC2 Linux instance
 
 I opened **EC2** > **Instances**, selected the instance named **Command Host**, and chose **Connect**. Under **Connect to instance**, I selected **Session Manager** and opened a terminal with **Connect**. If the instance or connection option was not immediately available, I waited for provisioning to finish and confirmed that I was in the lab's AWS Region.
 
-> **Screenshot placeholder — Command Host in EC2:** Add a screenshot showing the Command Host instance, with account identifiers redacted if needed.
->
+> **Screenshot placeholder — Command Host in EC2:** Add a screenshot showing the Command Host instance, with account identifiers redacted.
+
+<img width="735" height="434" alt="Screenshot 2026-08-03 at 20 18 12" src="https://github.com/user-attachments/assets/c7937448-c736-4f79-9656-5703f69a9858" />
+
 > **Screenshot placeholder — Session Manager terminal:** Add a screenshot of the connected terminal.
+
+<img width="732" height="739" alt="Screenshot 2026-08-03 at 20 19 06" src="https://github.com/user-attachments/assets/3a77d5f3-400a-431e-a6c4-2b6f5105512e" />
+
+<img width="732" height="196" alt="Screenshot 2026-08-03 at 20 19 32" src="https://github.com/user-attachments/assets/4681eccc-be25-43d9-ab0f-c65d6a5066f9" />
+
 
 ## Task 3: Configured the EC2 instance to connect to Aurora
 
@@ -71,8 +114,20 @@ mysql -u admin -p -h <writer-cluster-endpoint>
 After entering the password, I saw the MySQL-compatible client prompt, which confirmed the connection.
 
 > **Screenshot placeholder — Aurora writer endpoint:** Add a screenshot of the endpoint details. Keep credentials and sensitive account information out of the image.
->
-> **Screenshot placeholder — Successful database connection:** Add a screenshot showing the database client prompt. Do not include the password.
+
+<img width="754" height="538" alt="Screenshot 2026-08-03 at 20 25 25" src="https://github.com/user-attachments/assets/86b9aaae-05ab-4297-8c4b-1640eee4bd6e" />
+
+<img width="723" height="355" alt="Screenshot 2026-08-03 at 20 26 37" src="https://github.com/user-attachments/assets/4afd0d86-3010-4f9f-89c2-3dd13f46d867" />
+
+<img width="702" height="263" alt="Screenshot 2026-08-03 at 20 26 54" src="https://github.com/user-attachments/assets/e3a755a9-7bb2-4886-919d-afdd7d9c2007" />
+
+
+> **Screenshot placeholder — Successful database connection:** Add a screenshot showing the database client prompt. Not included password.
+
+<img width="781" height="73" alt="Screenshot 2026-08-03 at 20 31 17" src="https://github.com/user-attachments/assets/95f0b44d-593b-4bba-a8d4-1a2693bf9137" />
+
+<img width="792" height="231" alt="Screenshot 2026-08-03 at 20 31 58" src="https://github.com/user-attachments/assets/a2ac94db-812b-49b9-85d3-371df4bc557b" />
+
 
 ## Task 4: Created a table, inserted records, and queried data
 
@@ -126,10 +181,16 @@ WHERE GNP > 35000 AND Population > 10000000;
 The query returned two records: Australia and Thailand.
 
 > **Screenshot placeholder — `country` table created:** Add a screenshot showing the successful `CREATE TABLE` result.
->
+
+<img width="777" height="66" alt="Screenshot 2026-08-03 at 20 39 25" src="https://github.com/user-attachments/assets/d75a20d7-9cc5-4584-834b-b9115d1d0435" />
+
 > **Screenshot placeholder — Records inserted:** Add a screenshot showing the successful insert results.
->
+
+<img width="785" height="684" alt="Screenshot 2026-08-03 at 20 38 51" src="https://github.com/user-attachments/assets/35785486-f33c-4096-a568-1cc385927cce" />
+
 > **Screenshot placeholder — Query results:** Add a screenshot showing the two returned rows for Australia and Thailand.
+
+<img width="791" height="673" alt="Screenshot 2026-08-03 at 20 39 36" src="https://github.com/user-attachments/assets/1630bb4c-df1d-49d6-9859-e7408b00087f" />
 
 ## Conclusion
 
