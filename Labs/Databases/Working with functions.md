@@ -54,7 +54,7 @@ cd /home/ec2-user/
 5. I connected to the database instance using the MySQL client with the provided credentials:
 
 ```bash
-mysql -u root --password='re:St@rt!9'
+mysql -u root --password='....'
 ```
 
 Screenshot placeholder: Active MySQL prompt after successful connection.
