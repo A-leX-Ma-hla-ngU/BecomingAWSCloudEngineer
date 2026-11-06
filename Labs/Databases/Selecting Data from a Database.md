@@ -31,7 +31,10 @@ The lab environment had included:
 
 **Screenshot placeholder:** Lab environment showing the Command Host instance and database resources.
 
-`![Screenshot: Lab environment overview](screenshots/database-lab-overview.png)`
+<img width="969" height="544" alt="Screenshot 2026-07-31 at 16 07 40" src="https://github.com/user-attachments/assets/5724128a-f378-45f8-b383-7e60649b9c7b" />
+
+<img width="970" height="541" alt="Screenshot 2026-07-31 at 16 09 20" src="https://github.com/user-attachments/assets/73659a19-e53c-4985-9c9f-1fa0ea03efa8" />
+
 
 ---
 
@@ -49,11 +52,15 @@ mysql -u root --password='<lab-provided-password>'
 
 **Screenshot placeholder:** Command Host instance selected in the EC2 console and Session Manager connection.
 
-`![Screenshot: Command Host Session Manager](screenshots/command-host-session.png)`
+<img width="633" height="470" alt="Screenshot 2026-07-31 at 16 15 46" src="https://github.com/user-attachments/assets/091a1a97-b0a4-4830-9a52-6db04f5f341c" />
+
+<img width="920" height="736" alt="Screenshot 2026-07-31 at 16 20 39" src="https://github.com/user-attachments/assets/270304ee-97bd-4cc9-984e-b1fb6576e059" />
+
 
 **Screenshot placeholder:** Successful MySQL connection at the prompt. No password should be visible.
 
-`![Screenshot: MySQL connected](screenshots/mysql-connected.png)`
+<img width="850" height="216" alt="Screenshot 2026-07-31 at 16 23 47" src="https://github.com/user-attachments/assets/df207869-2478-4207-9803-692a5205bd1a" />
+
 
 ---
 
@@ -75,15 +82,19 @@ SHOW COLUMNS FROM world.country;
 
 **Screenshot placeholder:** `SHOW DATABASES;` output showing the `world` database.
 
-`![Screenshot: SHOW DATABASES output](screenshots/show-databases.png)`
+<img width="611" height="290" alt="Screenshot 2026-07-31 at 16 24 10" src="https://github.com/user-attachments/assets/8a2416de-aee0-4566-9c66-77c3e843b837" />
 
-**Screenshot placeholder:** Query results for `SELECT * FROM world.country;` and `SELECT COUNT(*) FROM world.country;`.
 
-`![Screenshot: Country table and row count](screenshots/country-table-and-count.png)`
+**Screenshot placeholder:** Query results for <img width="620" height="61" alt="Screenshot 2026-07-31 at 16 24 36" src="https://github.com/user-attachments/assets/c01f682d-d3db-4b79-b70d-4b6df8eb0fed" /> 
+<img width="1099" height="890" alt="Screenshot 2026-07-31 at 16 24 53" src="https://github.com/user-attachments/assets/c9e3755b-9299-48b2-947d-d97d8163037b" />
 
-**Screenshot placeholder:** `SHOW COLUMNS FROM world.country;` output showing the table schema.
+and <img width="745" height="222" alt="Screenshot 2026-07-31 at 16 28 04" src="https://github.com/user-attachments/assets/5a6c0aed-37eb-40f6-8b00-fc0ef3ce8153" />
 
-`![Screenshot: Country table columns](screenshots/country-columns.png)`
+**Screenshot placeholder:** <img width="631" height="46" alt="Screenshot 2026-07-31 at 16 28 22" src="https://github.com/user-attachments/assets/f5bd0361-7700-4f1a-b05d-0d8d4d5030e3" /> output showing the table schema.
+
+<img width="963" height="695" alt="Screenshot 2026-07-31 at 16 28 38" src="https://github.com/user-attachments/assets/68fbbcc5-af1c-4501-90ea-f1e4e1a9e608" />
+
+<img width="1064" height="886" alt="Screenshot 2026-07-31 at 16 28 45" src="https://github.com/user-attachments/assets/40040b5e-4ce6-4b01-9165-12d353e0c607" />
 
 ### Selected and aliased columns
 
@@ -99,7 +110,12 @@ FROM world.country;
 
 **Screenshot placeholder:** Selected country columns with the `Surface Area` alias visible.
 
-`![Screenshot: Selected columns and alias](screenshots/select-columns-alias.png)`
+<img width="936" height="48" alt="Screenshot 2026-07-31 at 16 29 24" src="https://github.com/user-attachments/assets/a8fb277c-77b2-40ac-a976-e7b4ea865981" />
+
+<img width="937" height="707" alt="Screenshot 2026-07-31 at 16 32 55" src="https://github.com/user-attachments/assets/15ac185d-26db-4624-bb26-faa315fd6d71" />
+
+<img width="939" height="705" alt="Screenshot 2026-07-31 at 16 32 23" src="https://github.com/user-attachments/assets/cfc9f7ce-e2ee-42e1-b0fb-c63311e239ac" />
+
 
 ### Sorted query results
 
@@ -117,7 +133,17 @@ ORDER BY Population DESC;
 
 **Screenshot placeholder:** Country results ordered by population in ascending and descending order.
 
-`![Screenshot: Population sort](screenshots/order-by-population.png)`
+<img width="836" height="714" alt="Screenshot 2026-07-31 at 16 41 12" src="https://github.com/user-attachments/assets/dd4670e5-2f40-48b1-aa28-94b4ab8f5356" />
+
+<img width="841" height="698" alt="Screenshot 2026-07-31 at 16 41 35" src="https://github.com/user-attachments/assets/53e44566-cdad-4ae0-8816-41769b24ba7b" />
+
+<img width="831" height="57" alt="Screenshot 2026-07-31 at 16 42 07" src="https://github.com/user-attachments/assets/ebd05f57-dc29-43d1-a81c-bfb8b6d743c4" />
+
+<img width="838" height="714" alt="Screenshot 2026-07-31 at 16 42 32" src="https://github.com/user-attachments/assets/e3a3a18f-8471-48a8-bb0e-5ac8d190c1f5" />
+
+<img width="840" height="716" alt="Screenshot 2026-07-31 at 16 42 44" src="https://github.com/user-attachments/assets/be1be630-9dbe-4dc1-8925-50c14371d663" />
+
+
 
 ### Filtered rows with comparison operators and `AND`
 
@@ -138,7 +164,17 @@ ORDER BY Population DESC;
 
 **Screenshot placeholder:** Filtered country results for populations over 50 million and the restricted range query.
 
-`![Screenshot: WHERE and AND results](screenshots/where-and-population-results.png)`
+<img width="838" height="73" alt="Screenshot 2026-07-31 at 16 44 13" src="https://github.com/user-attachments/assets/e68971fe-4ff0-4c2f-ace2-2b02bf34bbed" />
+
+<img width="841" height="700" alt="Screenshot 2026-07-31 at 16 44 25" src="https://github.com/user-attachments/assets/0ca3f43b-25f6-48d9-b46c-9dcfbccc11ac" />
+
+<img width="842" height="619" alt="Screenshot 2026-07-31 at 16 44 33" src="https://github.com/user-attachments/assets/ddc72748-3659-4b5e-bad1-5c1e3fea428b" />
+
+<img width="828" height="72" alt="Screenshot 2026-07-31 at 16 47 34" src="https://github.com/user-attachments/assets/28138dbb-bec3-4f88-baf0-e24c787160bd" />
+
+<img width="1102" height="890" alt="Screenshot 2026-07-31 at 16 47 52" src="https://github.com/user-attachments/assets/21737d09-258a-487d-9197-429e1a0f85b9" />
+
+
 
 ---
 
@@ -155,7 +191,9 @@ WHERE Region = 'Southern Europe'
 
 **Screenshot placeholder:** Challenge query showing Italy as the matching country.
 
-`![Screenshot: Southern Europe population challenge](screenshots/southern-europe-challenge.png)`
+<img width="843" height="277" alt="Screenshot 2026-07-31 at 16 51 06" src="https://github.com/user-attachments/assets/f3fc333f-de03-42b6-b2e1-8e8ba070ea97" />
+
+
 
 ---
 
