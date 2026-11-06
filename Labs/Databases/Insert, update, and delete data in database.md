@@ -26,8 +26,9 @@ Before I began, the following resources had been provided:
 - A configured root password for the MySQL instance for lab access.
 
 Placeholder screenshot:
+<img width="719" height="406" alt="Screenshot 2026-07-31 at 15 02 13" src="https://github.com/user-attachments/assets/98a3cbba-2207-4215-b6da-32a177b96829" />
 
-![Screenshot: Lab Provisioning Overview](screenshots/lab-provisioning-overview.png)
+<img width="715" height="399" alt="Screenshot 2026-07-31 at 15 02 33" src="https://github.com/user-attachments/assets/39b83249-ce18-4121-9c81-5f7fa7b8e6dd" />
 
 ---
 
@@ -41,7 +42,11 @@ I connected to the Command Host using the AWS Console and Session Manager to acc
 
 Screenshot placeholder: Command Host selected in the EC2 console and Session Manager button.
 
-![Screenshot: Command Host Session Manager](screenshots/command-host-session.png)
+<img width="831" height="533" alt="Screenshot 2026-07-31 at 15 10 01" src="https://github.com/user-attachments/assets/2e283ce4-3ade-4ae4-81cc-b0a2b88ea5a4" />
+
+<img width="822" height="675" alt="Screenshot 2026-07-31 at 15 11 22" src="https://github.com/user-attachments/assets/fc566ea5-87c1-47c7-812d-e925108842ee" />
+
+
 
 4. In the terminal, I prepared the environment by switching to the root user and moving to the ec2-user home directory:
 
@@ -53,12 +58,14 @@ cd /home/ec2-user/
 5. I connected to the database instance using the MySQL client with the provided credentials:
 
 ```bash
-mysql -u root --password='re:St@rt!9'
+mysql -u root --password='.....'
 ```
 
 Screenshot placeholder: Active MySQL prompt after successful connection.
 
-![Screenshot: MySQL prompt connected](screenshots/mysql-connected.png)
+<img width="648" height="44" alt="Screenshot 2026-07-31 at 15 13 36" src="https://github.com/user-attachments/assets/491bb95d-c6db-4be8-b8af-f86f33363752" />
+
+<img width="894" height="204" alt="Screenshot 2026-07-31 at 15 32 35" src="https://github.com/user-attachments/assets/5580d14b-2e10-403a-b7d4-3d73d7b291fa" />
 
 6. I verified available databases with:
 
@@ -80,7 +87,7 @@ SELECT * FROM world.country;
 
 Screenshot placeholder: Initial SELECT * output.
 
-![Screenshot: Initial SELECT all countries](screenshots/select-all-initial.png)
+<img width="604" height="101" alt="Screenshot 2026-07-31 at 15 15 29" src="https://github.com/user-attachments/assets/90cfe0a4-fabc-40bb-87b0-53a5032542cd" />
 
 2. I inserted two sample rows into the `country` table using the following statements (the VALUES lists matched the table schema order):
 
@@ -98,7 +105,7 @@ SELECT * FROM world.country WHERE Code IN ('IRL', 'AUS');
 
 Screenshot placeholder: SELECT for newly inserted rows.
 
-![Screenshot: SELECT inserted rows](screenshots/select-inserted-rows.png)
+<img width="1027" height="520" alt="Screenshot 2026-07-31 at 15 18 16" src="https://github.com/user-attachments/assets/56b77218-71e2-4670-a20b-eb689b95ce59" />
 
 Expected result snapshot:
 
@@ -127,13 +134,13 @@ SELECT * FROM world.country;
 
 Screenshot placeholder: SELECT output after Population set to 0.
 
-![Screenshot: SELECT after population update](screenshots/select-after-population-update.png)
-
+<img width="1114" height="504" alt="Screenshot 2026-07-31 at 15 19 52" src="https://github.com/user-attachments/assets/494815e8-fa74-47cc-b307-dcbb9e4cc20d" />
 3. I updated both `Population` and `SurfaceArea` columns for all rows:
 
 ```sql
 UPDATE world.country SET Population = 100, SurfaceArea = 100;
 ```
+<img width="965" height="128" alt="Screenshot 2026-07-31 at 15 20 18" src="https://github.com/user-attachments/assets/b75bdd1b-c88e-4fe1-862b-8710e9de2369" />
 
 4. I verified the changes again with:
 
@@ -143,7 +150,7 @@ SELECT * FROM world.country;
 
 Screenshot placeholder: SELECT output after population and surface area updates.
 
-![Screenshot: SELECT after population and surface updates](screenshots/select-after-multiple-updates.png)
+<img width="1125" height="502" alt="Screenshot 2026-07-31 at 15 20 55" src="https://github.com/user-attachments/assets/687716bc-9e27-4498-a3bc-29fbc138608f" />
 
 Notes: I took care to notice that updates without WHERE clauses affected every row in the table and that destructive changes required caution.
 
@@ -168,7 +175,7 @@ SELECT * FROM world.country;
 
 Screenshot placeholder: SELECT output showing an empty table.
 
-![Screenshot: SELECT after delete all rows](screenshots/select-after-delete.png)
+<img width="602" height="168" alt="Screenshot 2026-07-31 at 15 23 45" src="https://github.com/user-attachments/assets/466f3c4b-4397-4a17-b73c-76ad05a086f7" />
 
 ---
 
@@ -190,18 +197,18 @@ ls /home/ec2-user/world.sql
 
 Screenshot placeholder: ls output showing world.sql.
 
-![Screenshot: ls world.sql file](screenshots/ls-world-sql.png)
+<img width="711" height="73" alt="Screenshot 2026-07-31 at 15 25 35" src="https://github.com/user-attachments/assets/d4171278-92a4-4579-bb8b-69799f64fe48" />
 
 3. I imported the SQL file into MySQL to create tables and insert data:
 
 ```bash
-mysql -u root --password='re:St@rt!9' < /home/ec2-user/world.sql
+mysql -u root --password='.....' < /home/ec2-user/world.sql
 ```
 
 4. I reconnected to MySQL:
 
 ```bash
-mysql -u root --password='re:St@rt!9'
+mysql -u root --password='.....'
 ```
 
 5. I verified the database objects had been recreated and populated:
@@ -216,9 +223,11 @@ SELECT * FROM countrylanguage LIMIT 20;
 
 Screenshot placeholders: SHOW TABLES and SELECT outputs showing the repopulated tables.
 
-![Screenshot: SHOW TABLES after import](screenshots/show-tables-after-import.png)
+<img width="817" height="356" alt="Screenshot 2026-07-31 at 15 33 29" src="https://github.com/user-attachments/assets/df6bd3f7-effc-4503-964e-951f49920c7b" />
 
-![Screenshot: SELECT country after import](screenshots/select-country-after-import.png)
+
+
+<img width="1585" height="875" alt="Screenshot 2026-07-31 at 15 34 25" src="https://github.com/user-attachments/assets/1340b177-c21f-4a62-8263-5d23fb12c2ec" />
 
 ---
 
