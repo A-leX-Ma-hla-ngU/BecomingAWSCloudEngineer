@@ -27,7 +27,7 @@ Before I began, the following resources had been provided:
 
 Placeholder screenshot: 
 
-![Screenshot: Lab Provisioning Overview](screenshots/lab-provisioning-overview.png)
+<img width="723" height="485" alt="Screenshot 2026-07-31 at 12 07 57" src="https://github.com/user-attachments/assets/ba7efd06-49da-4ed3-b41f-92bbc0515c14" />
 
 ---
 
@@ -43,6 +43,9 @@ Screenshot placeholder: Command Host selected in the EC2 console and Session Man
 
 ![Screenshot: Command Host Session Manager](screenshots/command-host-session.png)
 
+<img width="749" height="480" alt="Screenshot 2026-07-31 at 12 08 15" src="https://github.com/user-attachments/assets/556014e1-c2bd-4d78-bb0f-56b6c756d627" />
+
+
 4. In the terminal, I prepared the environment by switching to the root user and moving to the ec2-user home directory:
 
 ```bash
@@ -53,14 +56,14 @@ cd /home/ec2-user/
 5. I connected to the relational database instance using the MySQL client. The command used was:
 
 ```bash
-mysql -u root --password='re:St@rt!9'
+mysql -u root --password='.....'
 ```
 
 Note: If the Session Manager window had become unresponsive I had closed the window and reconnected, then repeated the environment setup commands above.
 
 Screenshot placeholder: Active MySQL prompt after successful connection.
 
-![Screenshot: MySQL prompt connected](screenshots/mysql-connected.png)
+<img width="841" height="270" alt="Screenshot 2026-07-31 at 12 17 16" src="https://github.com/user-attachments/assets/a5368e50-9cd3-4b3d-821f-6b178de63c76" />
 
 ---
 
@@ -122,7 +125,8 @@ During inspection, I observed that the `Continent` column name had been misspell
 
 Screenshot placeholder: SHOW COLUMNS output highlighting the misspelled column.
 
-![Screenshot: SHOW COLUMNS output](screenshots/show-columns-misspelled.png)
+<img width="843" height="244" alt="Screenshot 2026-07-31 at 12 32 12" src="https://github.com/user-attachments/assets/af403f68-0986-4d8c-900a-99f700eb8997" />
+
 
 7. I corrected the column name using ALTER TABLE:
 
@@ -134,7 +138,12 @@ ALTER TABLE world.country RENAME COLUMN Conitinent TO Continent;
 
 Screenshot placeholder: SHOW COLUMNS output after renaming the column.
 
-![Screenshot: SHOW COLUMNS corrected](screenshots/show-columns-corrected.png)
+<img width="829" height="131" alt="Screenshot 2026-07-31 at 12 37 07" src="https://github.com/user-attachments/assets/8c6f3cc7-bcc7-4690-aad9-ae96c144509c" />
+
+<img width="674" height="46" alt="Screenshot 2026-07-31 at 12 37 43" src="https://github.com/user-attachments/assets/1c76a8d1-0a43-49a5-a83c-d57585198836" />
+
+<img width="528" height="280" alt="Screenshot 2026-07-31 at 12 38 51" src="https://github.com/user-attachments/assets/830688e8-9a7d-41cc-810b-83c03cce85f2" />
+
 
 Challenge note: I also added a simple `city` table as a challenge exercise using the following statement:
 
@@ -172,7 +181,19 @@ DROP DATABASE world;
 
 Screenshot placeholder: Terminal showing DROP TABLE and DROP DATABASE commands and subsequent SHOW results.
 
-![Screenshot: DROP operations verification](screenshots/drop-operations.png)
+<img width="844" height="147" alt="Screenshot 2026-07-31 at 14 49 28" src="https://github.com/user-attachments/assets/66ffb1a0-91c0-40b5-9110-777a59b404dd" />
+
+<img width="596" height="190" alt="Screenshot 2026-07-31 at 14 50 35" src="https://github.com/user-attachments/assets/7d12c7d4-2058-476b-bb26-0adf24936486" />
+
+<img width="799" height="243" alt="Screenshot 2026-07-31 at 14 50 41" src="https://github.com/user-attachments/assets/fa218eb6-312d-4349-afbb-f726668d8291" />
+
+<img width="552" height="89" alt="Screenshot 2026-07-31 at 14 54 11" src="https://github.com/user-attachments/assets/8f26cf31-a407-4525-b0f6-0d963446a193" />
+
+<img width="609" height="222" alt="Screenshot 2026-07-31 at 14 54 59" src="https://github.com/user-attachments/assets/501e2072-969f-457a-a2b3-243acd4b8513" />
+
+<img width="571" height="111" alt="Screenshot 2026-07-31 at 14 55 35" src="https://github.com/user-attachments/assets/d121af34-fd46-4561-a383-fd8e040a4325" />
+
+<img width="549" height="259" alt="Screenshot 2026-07-31 at 14 55 58" src="https://github.com/user-attachments/assets/b3062d27-baea-4bec-bcc2-55d0dd534f32" />
 
 ---
 
