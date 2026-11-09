@@ -24,7 +24,7 @@ In the AWS Management Console, I opened **RDS** > **Databases**, selected **Crea
 | Template | Dev/Test |
 | DB cluster identifier | `aurora` |
 | Master username | `admin` |
-| Master password | The lab password |
+| Master password | provisioned password |
 | DB instance class | Burstable classes, `db.t3.medium` |
 | Multi-AZ deployment | Don't create an Aurora Replica |
 | VPC | `LabVPC` |
