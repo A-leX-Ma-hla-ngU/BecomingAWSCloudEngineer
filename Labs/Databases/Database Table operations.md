@@ -29,6 +29,8 @@ Placeholder screenshot:
 
 <img width="723" height="485" alt="Screenshot 2026-07-31 at 12 07 57" src="https://github.com/user-attachments/assets/ba7efd06-49da-4ed3-b41f-92bbc0515c14" />
 
+<img width="749" height="480" alt="Screenshot 2026-07-31 at 12 08 15" src="https://github.com/user-attachments/assets/43790216-9a9b-432d-b71f-257ccf898b2c" />
+
 ---
 
 ## Task 1 — Connecting to the Command Host
@@ -41,9 +43,10 @@ I connected to the Command Host using the AWS Console and Session Manager. The s
 
 Screenshot placeholder: Command Host selected in the EC2 console and Session Manager button.
 
-![Screenshot: Command Host Session Manager](screenshots/command-host-session.png)
+<img width="763" height="554" alt="Screenshot 2026-07-31 at 12 11 40" src="https://github.com/user-attachments/assets/08340536-b467-445d-88ab-cacae7ab486e" />
 
-<img width="749" height="480" alt="Screenshot 2026-07-31 at 12 08 15" src="https://github.com/user-attachments/assets/556014e1-c2bd-4d78-bb0f-56b6c756d627" />
+<img width="834" height="295" alt="Screenshot 2026-07-31 at 12 12 24" src="https://github.com/user-attachments/assets/aeeafe44-0f81-49cb-9d77-04e1c055369d" />
+
 
 
 4. In the terminal, I prepared the environment by switching to the root user and moving to the ec2-user home directory:
