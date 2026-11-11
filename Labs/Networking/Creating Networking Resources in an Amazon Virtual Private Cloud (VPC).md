@@ -103,7 +103,7 @@ Network ACLs were stateless, so inbound and outbound traffic were evaluated inde
 
 > **Screenshot placeholder — Network ACL outbound rules:**
 <img width="1663" height="250" alt="Screenshot 2026-08-12 at 16 49 11" src="https://github.com/user-attachments/assets/9af46e34-a2ae-4290-920c-4d2800dc5e2f" />
->
+
 > **Screenshot placeholder — NACL subnet association:**
 <img width="803" height="368" alt="Screenshot 2026-08-12 at 16 51 30" src="https://github.com/user-attachments/assets/734a51b4-8da7-435e-b26a-24cac4bf91ba" />
 <img width="821" height="520" alt="Screenshot 2026-08-12 at 16 51 57" src="https://github.com/user-attachments/assets/d23715b8-428c-4a0f-b3a9-5932293c423d" />
