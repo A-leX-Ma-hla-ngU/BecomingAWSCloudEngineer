@@ -19,7 +19,8 @@ Paulo, a startup owner who was new to AWS, requested a VPC with approximately 15
 
 A VPC was a logically isolated virtual network for AWS resources. Resources in a VPC used private IP addresses to communicate internally. Internet access depended on the network configuration, such as a subnet's route table, an internet gateway, and appropriate public addressing. A subnet was a CIDR range within the VPC CIDR.
 
-> **Screenshot placeholder — Customer architecture:** Add the lab diagram showing the VPC, internet gateway, and public subnet.
+> **Screenshot placeholder — Customer architecture:**
+<img width="898" height="578" alt="Screenshot 2026-08-06 at 16 56 09" src="https://github.com/user-attachments/assets/54e8450d-1ef6-4d1f-b454-1175e9112e43" />
 
 ## Task 1: Investigated the customer's requirements and created the VPC
 
@@ -53,13 +54,16 @@ In the AWS Management Console, I opened **VPC** and used the VPC creation workfl
 
 I created the VPC and confirmed the success message. I then opened **Your VPCs** and verified that `First VPC` appeared in the VPC list.
 
-> **Screenshot placeholder — VPC wizard configuration:** Add a screenshot showing the VPC and subnet CIDR values, name, and selected single-public-subnet configuration.
+> **Screenshot placeholder — VPC wizard configuration:**
+<img width="663" height="608" alt="Screenshot 2026-08-06 at 16 36 03" src="https://github.com/user-attachments/assets/64985ba4-7fcd-450f-a527-4ac070a7239a" />
+<img width="685" height="623" alt="Screenshot 2026-08-06 at 16 36 18" src="https://github.com/user-attachments/assets/84fb2ca7-caf0-436c-8333-a255050548f4" />
+
+> **Screenshot placeholder — VPC creation confirmation:**
+<img width="825" height="631" alt="Screenshot 2026-08-06 at 16 36 58" src="https://github.com/user-attachments/assets/ec394843-00a1-4610-9a15-aeede3039756" />
 >
-> **Screenshot placeholder — VPC creation confirmation:** Add a screenshot showing the successful creation message.
->
-> **Screenshot placeholder — VPC in Your VPCs:** Add a screenshot showing `First VPC` and its CIDR block.
->
-> **Screenshot placeholder — Created subnet:** Add a screenshot showing the `Public subnet` and its CIDR block in the subnet list.
+> **Screenshot placeholder — VPC in Your VPCs:**
+<img width="825" height="690" alt="Screenshot 2026-08-06 at 16 51 51" src="https://github.com/user-attachments/assets/02ce61ea-c8f4-41b6-af88-3384009f5f54" />
+
 
 ## Task 2: Summarized the response to the customer
 
@@ -67,7 +71,6 @@ I explained that `192.168.0.0/18` was a private VPC CIDR from the RFC 1918 range
 
 I also explained that a public subnet's internet connectivity depended on its routing and the resources' public addressing and security configuration. In this lab, the VPC workflow created the requested single-public-subnet environment; a subnet's name alone did not make it public. The route table and internet gateway configuration determined its routing behavior.
 
-> **Screenshot placeholder — Customer walkthrough or group discussion:** Add a screenshot of the final walkthrough or presentation, with account-specific details redacted.
 
 ## Lab completion
 
