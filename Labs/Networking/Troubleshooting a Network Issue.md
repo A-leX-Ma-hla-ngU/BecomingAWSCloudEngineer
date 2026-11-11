@@ -16,7 +16,8 @@ In this lab, I investigated a customer's report that an Apache web server could 
 
 Ana, a contractor, reported that she had created an Apache server from the command line but could not reach it with ping or load its IP address in a browser. The lab environment replicated the customer's VPC and resources so that I could investigate the issue.
 
-> **Screenshot placeholder — Customer architecture:** Add the lab diagram showing the VPC, internet gateway, public subnet, and EC2 instance.
+> **Screenshot placeholder — Customer architecture:**
+<img width="752" height="335" alt="Screenshot 2026-11-11 at 18 32 53" src="https://github.com/user-attachments/assets/1fcb2b59-903f-4fb2-80e7-41e0d29cc851" />
 
 ## Task 1: Connected to the EC2 instance
 
@@ -35,7 +36,8 @@ ssh -i labsuser.pem ec2-user@<public-ip>
 
 I confirmed the first connection when prompted. I used the lab-provided key for authentication and kept the private key secure.
 
-> **Screenshot placeholder — SSH connection:** Add a screenshot showing the connected terminal. Do not include the private key or credentials.
+> **Screenshot placeholder — SSH connection:**
+<img width="839" height="299" alt="Screenshot 2026-08-13 at 14 45 27" src="https://github.com/user-attachments/assets/b348ef31-4431-4947-a285-faa89d78e90b" />
 
 ## Task 2: Checked and started Apache
 
@@ -60,11 +62,14 @@ http://<public-ip>
 
 The Apache test page still did not load at this stage, which indicated that starting the service alone had not resolved the network access problem.
 
-> **Screenshot placeholder — Inactive Apache service:** Add a screenshot showing the initial `httpd` status.
->
-> **Screenshot placeholder — Active Apache service:** Add a screenshot showing `httpd` in the active state.
->
-> **Screenshot placeholder — Initial browser test:** Add a screenshot of the browser error before the network rule was corrected.
+> **Screenshot placeholder — Inactive Apache service:** 
+<img width="839" height="166" alt="Screenshot 2026-08-13 at 14 46 23" src="https://github.com/user-attachments/assets/e52fc4cc-4c75-4e9b-b33d-da3778d82607" />
+
+> **Screenshot placeholder — Active Apache service:**
+<img width="846" height="465" alt="Screenshot 2026-08-13 at 14 49 32" src="https://github.com/user-attachments/assets/655cb550-b78a-4b76-8ac5-59d5aa7a0abe" />
+
+> **Screenshot placeholder — Initial browser test:** 
+<img width="801" height="666" alt="Screenshot 2026-08-13 at 15 11 21" src="https://github.com/user-attachments/assets/549069c2-93b8-4626-aa46-ef0fc387de21" />
 
 ## Task 3: Investigated the VPC configuration
 
@@ -83,13 +88,16 @@ The Apache server used HTTP on TCP port 80. The issue was caused by the instance
 | Access purpose | Protocol and port | Source used |
 | --- | --- | --- |
 | Apache web access | TCP 80 (HTTP) | The lab-required client source |
-| SSH administration | TCP 22 (SSH) | Restricted to the lab user's trusted IP where applicable |
+| SSH administration | TCP 22 (SSH) | Restricted to the lab user's trusted IP |
 
-> **Screenshot placeholder — VPC route table and internet gateway:** Add a screenshot showing the subnet route and attached gateway.
+> **Screenshot placeholder — VPC route table and internet gateway:**
+<img width="1356" height="275" alt="Screenshot 2026-11-11 at 19 25 55" src="https://github.com/user-attachments/assets/7f875189-a13a-43c2-a397-792b5ef82902" />
+
+<img width="1587" height="288" alt="Screenshot 2026-11-11 at 19 25 07" src="https://github.com/user-attachments/assets/d371fb97-fce0-40ef-9699-d733f4763c50" />
 >
-> **Screenshot placeholder — Security group before correction:** Add a screenshot showing the missing or incorrect HTTP inbound rule.
+> **Screenshot placeholder — Security group before correction:** <img width="1680" height="665" alt="Screenshot 2026-08-13 at 15 08 54" src="https://github.com/user-attachments/assets/ed8206a4-4f77-4f64-992c-15c5fa160b16" />
 >
-> **Screenshot placeholder — Corrected security group:** Add a screenshot showing the HTTP rule on TCP port 80 and its intended source. Redact personal IP addresses.
+> **Screenshot placeholder — Corrected security group:** <img width="818" height="641" alt="Screenshot 2026-08-13 at 15 10 28" src="https://github.com/user-attachments/assets/582f04de-2de9-476c-8169-e033147455e5" />
 >
 > **Screenshot placeholder — Network ACL rules:** Add a screenshot showing the relevant inbound and outbound rules, if reviewed.
 
@@ -103,7 +111,8 @@ http://<public-ip>
 
 The Apache test page loaded successfully. This confirmed that the Apache service was active and that the VPC route and security controls allowed the required HTTP traffic.
 
-> **Screenshot placeholder — Apache page after correction:** Add a screenshot showing the Apache test page loaded in the browser.
+> **Screenshot placeholder — Apache page after correction:**
+<img width="813" height="638" alt="Screenshot 2026-08-13 at 15 11 30" src="https://github.com/user-attachments/assets/fd1d3057-7c1a-41f3-81b0-0a31624a13b2" />
 
 ## Findings and lab completion
 
