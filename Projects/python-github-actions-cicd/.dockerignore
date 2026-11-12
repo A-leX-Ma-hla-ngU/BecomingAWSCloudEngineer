@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+.git/
+.github/
+tests/
+README.md
