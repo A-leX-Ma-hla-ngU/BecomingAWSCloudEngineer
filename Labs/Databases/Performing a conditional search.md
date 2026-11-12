@@ -194,21 +194,6 @@ Screenshot placeholder: Challenge query result showing aggregated surface area a
 - I learned to use column aliases to make results more readable and to use functions (LOWER) to perform reliable case-insensitive searches.
 - I validated that careful inspection of the data and schema helped me choose the correct columns and operators for each query.
 
----
-
-## Attachments and screenshot checklist
-
-Please add screenshots to the following files/paths in the repository (or update these links after you uploaded screenshots):
-
-- screenshots/lab-provisioning-overview.png — EC2/Console view showing the lab.
-- screenshots/command-host-session.png — Session Manager connect screen.
-- screenshots/mysql-connected.png — MySQL prompt after connecting.
-- screenshots/show-databases.png — SHOW DATABASES output showing `world`.
-- screenshots/select-all-country.png — Initial SELECT * output for the country table.
-- screenshots/select-range-between.png — Output for the BETWEEN query.
-- screenshots/sum-europe.png — SUM(Population) for Europe with alias.
-- screenshots/lower-region-like-central.png — Output for LOWER(...) LIKE "%central%".
-- screenshots/challenge-result.png — Aggregation result for North America.
 
 ---
 
