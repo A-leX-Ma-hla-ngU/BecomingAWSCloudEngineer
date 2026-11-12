@@ -237,23 +237,6 @@ Screenshot placeholders: SHOW TABLES and SELECT outputs showing the repopulated 
 - I learned how to import a dataset from a SQL file to quickly restore or populate tables.
 - I verified that destructive operations (DELETE) were final unless backups existed, and therefore backups or scripts to restore data were important.
 
----
-
-## Attachments and screenshot checklist
-
-Please add screenshots to the following files/paths in the repository or update the links after uploading screenshots:
-
-- screenshots/lab-provisioning-overview.png — EC2/Console view showing the lab provisioning.
-- screenshots/command-host-session.png — Session Manager connect screen.
-- screenshots/mysql-connected.png — MySQL prompt after connecting.
-- screenshots/select-all-initial.png — Initial SELECT * output for country.
-- screenshots/select-inserted-rows.png — Output showing inserted IRL and AUS rows.
-- screenshots/select-after-population-update.png — Output after setting Population = 0.
-- screenshots/select-after-multiple-updates.png — Output after updating Population and SurfaceArea.
-- screenshots/select-after-delete.png — Output showing empty country table.
-- screenshots/ls-world-sql.png — Output showing /home/ec2-user/world.sql file.
-- screenshots/show-tables-after-import.png — SHOW TABLES output after import.
-- screenshots/select-country-after-import.png — SELECT output after import showing multiple rows.
 
 ---
 
