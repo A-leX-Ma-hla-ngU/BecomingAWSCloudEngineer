@@ -206,22 +206,6 @@ WHERE Region = 'Southern Europe'
 - `WHERE` filtered rows, and comparison operators such as `>` and `<` expressed numeric conditions.
 - `AND` required both conditions to be true.
 
----
-
-## Screenshot checklist
-
-The following screenshot placeholders were included for the lab record:
-
-- `screenshots/database-lab-overview.png` — Lab resources and Command Host.
-- `screenshots/command-host-session.png` — Session Manager connection.
-- `screenshots/mysql-connected.png` — MySQL prompt after connecting.
-- `screenshots/show-databases.png` — Database list showing `world`.
-- `screenshots/country-table-and-count.png` — Country data and row count.
-- `screenshots/country-columns.png` — Country table schema.
-- `screenshots/select-columns-alias.png` — Selected columns and alias.
-- `screenshots/order-by-population.png` — Ascending and descending sort output.
-- `screenshots/where-and-population-results.png` — Population filters using `WHERE` and `AND`.
-- `screenshots/southern-europe-challenge.png` — Challenge result showing Italy.
 
 ---
 
