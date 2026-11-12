@@ -208,23 +208,6 @@ Screenshot placeholder: Challenge query output showing two region name columns.
 - I used functions both in the SELECT output and as conditions in the WHERE clause.
 - I confirmed that splitting strings and trimming whitespace helped create reliable filters and clearer query outputs.
 
----
-
-## Attachments and screenshot checklist
-
-Please add screenshots to the following paths (or update the links after you uploaded screenshots):
-
-- screenshots/lab-provisioning-overview.png — EC2/Console view showing the lab.
-- screenshots/command-host-session.png — Session Manager connect screen.
-- screenshots/mysql-connected.png — MySQL prompt after connecting.
-- screenshots/show-databases.png — SHOW DATABASES output showing `world`.
-- screenshots/select-all-country.png — Initial SELECT * output for the country table.
-- screenshots/aggregate-functions.png — Aggregate functions output (SUM/AVG/MAX/MIN/COUNT).
-- screenshots/substring-index.png — SUBSTRING_INDEX results.
-- screenshots/substring-index-where.png — SUBSTRING_INDEX used in WHERE clause.
-- screenshots/length-trim.png — LENGTH(TRIM()) results.
-- screenshots/distinct-regions.png — DISTINCT output for short region names.
-- screenshots/challenge-split-regions.png — Challenge result splitting Micronesia/Caribbean.
 
 ---
 
