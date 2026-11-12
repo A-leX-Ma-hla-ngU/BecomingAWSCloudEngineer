@@ -191,22 +191,6 @@ Screenshot placeholder: Challenge query output showing region ranks.
 - I learned that PARTITION BY limited window calculations to a logical group (for example, a region) and that ORDER BY inside OVER() defined the sequence for cumulative functions and ranking.
 - I confirmed that using RANK() with ORDER BY DESC produced rankings from largest to smallest, which was useful for comparative analysis.
 
----
-
-## Attachments and screenshot checklist
-
-Please add screenshots to the following paths (or update the links after you uploaded screenshots):
-
-- screenshots/lab-provisioning-overview.png — EC2/Console view showing the lab.
-- screenshots/command-host-session.png — Session Manager connect screen.
-- screenshots/mysql-connected.png — MySQL prompt after connecting.
-- screenshots/show-databases.png — SHOW DATABASES output showing `world`.
-- screenshots/select-all-country.png — Initial SELECT * output for the country table.
-- screenshots/select-region-australia.png — SELECT results for Australia and New Zealand ordered by population.
-- screenshots/group-by-sum.png — GROUP BY + SUM() result.
-- screenshots/running-total-over.png — SUM() OVER running total result.
-- screenshots/rank-over.png — Combined RANK() and SUM() OVER result.
-- screenshots/challenge-rank-by-region.png — Challenge result ranking countries by region.
 
 ---
 
