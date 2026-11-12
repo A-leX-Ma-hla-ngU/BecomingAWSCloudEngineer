@@ -206,20 +206,6 @@ Screenshot placeholder: Terminal showing DROP TABLE and DROP DATABASE commands a
 - I learned to always inspect the table schema immediately after creation (`SHOW COLUMNS`) so that any typographical errors in column names could be fixed early.
 - I verified destructive operations carefully: once a table or database was dropped it could not be recovered unless a backup had been taken.
 
----
-
-## Attachments and screenshot checklist
-
-Please add screenshots to the following files/paths in the repository (or update these links after you uploaded screenshots):
-
-- screenshots/lab-provisioning-overview.png — EC2/Console view showing the lab.
-- screenshots/command-host-session.png — Session Manager connect screen.
-- screenshots/mysql-connected.png — MySQL prompt after connecting.
-- screenshots/show-columns-misspelled.png — Output of SHOW COLUMNS showing the misspelling.
-- screenshots/show-columns-corrected.png — Output after the ALTER TABLE rename.
-- screenshots/drop-operations.png — Verification of DROP TABLE and DROP DATABASE results.
-
----
 
 ## Conclusion
 
