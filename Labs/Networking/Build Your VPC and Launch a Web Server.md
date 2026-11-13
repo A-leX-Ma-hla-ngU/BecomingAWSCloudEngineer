@@ -117,7 +117,8 @@ In **Security Groups**, I created a security group with these settings:
 
 I used this security group for the web server instance. The HTTP rule allowed web requests; for production, I would review whether the source should be restricted to a narrower range.
 
-> **Screenshot placeholder — Web Security Group:** <img width="833" height="443" alt="Screenshot 2026-08-13 at 16 29 53" src="https://github.com/user-attachments/assets/1bfc6564-5d7b-4147-b455-15ae5006ff8b" />
+> **Screenshot placeholder — Web Security Group:**
+<img width="833" height="443" alt="Screenshot 2026-08-13 at 16 29 53" src="https://github.com/user-attachments/assets/1bfc6564-5d7b-4147-b455-15ae5006ff8b" />
 <img width="832" height="537" alt="Screenshot 2026-08-13 at 16 31 08" src="https://github.com/user-attachments/assets/6a908bea-47ef-46cb-af32-b3bebc485b73" />
 
 ## Task 5: Launched and verified the web server
@@ -153,8 +154,10 @@ I launched the instance and waited until its status checks showed **2/2 checks p
 
 > **Screenshot placeholder — EC2 launch settings:**
 <img width="828" height="685" alt="Screenshot 2026-08-13 at 16 57 43" src="https://github.com/user-attachments/assets/02ef1d26-3270-46cb-8203-12316d572a2a" />
+
 > **Screenshot placeholder — User data:**
 <img width="810" height="596" alt="Screenshot 2026-08-13 at 17 58 58" src="https://github.com/user-attachments/assets/a89a62a2-e753-4c91-a8f6-8c7acb789608" />
+
 > **Screenshot placeholder — Instance status checks:**
 <img width="831" height="349" alt="Screenshot 2026-08-13 at 17 59 58" src="https://github.com/user-attachments/assets/91b550ff-3899-4c55-9cd0-2396176ed3f9" />
 
@@ -163,6 +166,7 @@ I launched the instance and waited until its status checks showed **2/2 checks p
 
 > **Screenshot placeholder — Completed architecture:**
 <img width="715" height="334" alt="Screenshot 2026-11-12 at 19 09 59" src="https://github.com/user-attachments/assets/27f0b394-3ded-45fe-bba3-1d35be011c03" />
+
 ## Lab completion
 
 I completed the lab by creating the VPC and subnets, associating the route tables, configuring the web security group, launching the EC2 web server, and verifying that the web page loaded successfully.
