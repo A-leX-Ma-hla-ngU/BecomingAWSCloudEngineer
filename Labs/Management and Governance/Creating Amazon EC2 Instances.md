@@ -2,244 +2,189 @@
 
 ## Lab overview
 
-This lab introduced me to the process of launching and configuring Amazon EC2 instances in AWS. I used the AWS Management Console to launch a bastion host and then used the AWS CLI from that instance to launch a second EC2 instance that acted as a web server. I also worked through the optional troubleshooting challenge, which required me to investigate a misconfigured instance after the user data script had been deleted and then repaired.
+This lab introduced me to launching and configuring Amazon EC2 instances. I used the AWS Management Console to launch a bastion host, connected to it with EC2 Instance Connect, and used the AWS CLI from the bastion host to launch a second instance as a web server. I also completed the optional troubleshooting challenge and used CloudTrail and instance logs to investigate lost user data and a failed cloud-init user-script run.
 
-The final architecture consisted of a bastion host and a web server instance running in a VPC, with the web server configured to serve web content over HTTP.
+The final architecture consisted of a bastion host and a web server instance in a VPC.
 
-> Screenshot placeholder — final architecture diagram for the EC2 bastion host and web server environment.
+> Screenshot placeholder — final architecture diagram showing the bastion host and web server.
 
-## Objectives
+## Objectives completed
 
-By the end of this lab, I had completed the following tasks:
-
-- I launched an EC2 instance by using the AWS Management Console.
-- I connected to the EC2 instance by using EC2 Instance Connect.
-- I launched a second EC2 instance by using the AWS CLI.
-- I configured user data to automate web server installation.
-- I validated that the web server was reachable from the internet.
-- I investigated and resolved a misconfigured user data script in the optional challenge.
+- I launched an EC2 instance using the AWS Management Console.
+- I connected to the bastion host using EC2 Instance Connect.
+- I launched another EC2 instance using the AWS CLI.
+- I used user data to automate instance configuration.
+- I investigated a misconfigured web server instance using CloudTrail and cloud-init logs.
 
 ## Duration
 
-This lab took approximately 45 minutes to complete, with additional time required to resolve the optional troubleshooting scenario.
+The lab was expected to take approximately 45 minutes. The optional troubleshooting investigation took additional time.
 
-## Task 1: Launched the bastion host instance
+## Task 1: Launched the bastion host
 
-I began this lab by opening the AWS Management Console and navigating to Amazon EC2. I selected the option to launch a new instance and configured the first EC2 instance, which served as a bastion host.
+I opened the EC2 console and launched an instance named `Bastion host`. I selected the Amazon Linux 2 AMI and the `t3.micro` instance type. Because I used EC2 Instance Connect, I proceeded without a key pair.
 
-### Step 1: Named the instance
+I selected the Lab VPC and its public subnet, left auto-assign public IP enabled, and created a security group named `Bastion security group` with the description `Permit SSH connections`. I retained the default 8 GiB root volume and attached the `Bastion-Role` instance profile so that the host could make the required AWS service calls through the CLI.
 
-I entered the name `Bastion host` in the Name and tags section. This action helped me identify the instance clearly in the EC2 console.
+> Screenshot placeholder — bastion host launch settings, including the AMI, instance type, network, security group, and IAM instance profile.
 
-> Screenshot placeholder — EC2 launch wizard showing the Name and tags configuration for the bastion host.
+I reviewed the launch summary, launched the instance, and confirmed that it appeared in the EC2 instance list.
 
-### Step 2: Selected the AMI
-
-I kept the default Amazon Linux selection in the quick start list. This provided the Amazon Linux 2 AMI that was required for the bastion host.
-
-> Screenshot placeholder — AMI selection screen showing Amazon Linux 2 selected.
-
-### Step 3: Selected the instance type
-
-I selected `t3.micro` as the instance type for the bastion host. This instance type was suitable for the lab workload and kept resource usage low.
-
-> Screenshot placeholder — Instance type selection for the bastion host with `t3.micro` chosen.
-
-### Step 4: Configured key pair options
-
-Because I used EC2 Instance Connect for this lab, I selected the option to proceed without a key pair. This was acceptable for the lab environment and reduced setup complexity.
-
-> Screenshot placeholder — Key pair configuration screen showing the instance launch without a key pair.
-
-### Step 5: Configured the network settings
-
-I opened the network settings and selected the Lab VPC. I kept the public subnet and enabled auto-assign public IP so that the bastion host could be accessed from the internet through the appropriate network path.
-
-I also created a security group named `Bastion security group` with the description `Permit SSH connections`. This security group allowed the SSH traffic needed for the bastion host.
-
-> Screenshot placeholder — Network settings showing Lab VPC, public subnet, and bastion security group configuration.
-
-### Step 6: Kept the default storage configuration
-
-I accepted the default root volume settings for the bastion host. The default 8 GiB root volume was sufficient for the lab.
-
-> Screenshot placeholder — Storage configuration page showing the default 8 GiB EBS volume.
-
-### Step 7: Added the required IAM role
-
-I expanded the Advanced details section and attached the `Bastion-Role` IAM instance profile. This role granted the instance permission to call AWS services later in the lab when I used the AWS CLI.
-
-> Screenshot placeholder — Advanced details showing the Bastion-Role instance profile attached to the bastion host.
-
-### Step 8: Launched the bastion host
-
-I reviewed the launch summary and selected Launch instance. After a short period, I confirmed that the bastion host had launched successfully and appeared in the EC2 instance list.
-
-> Screenshot placeholder — EC2 instance list showing the newly launched bastion host.
+> Screenshot placeholder — EC2 console showing the running bastion host.
 
 ## Task 2: Connected to the bastion host
 
-After the bastion host became available, I opened the EC2 console and selected the instance. I chose Connect and then used EC2 Instance Connect to establish a session. Once connected, I was able to interact with the instance and run AWS CLI commands.
+After the bastion host was running, I selected it in the EC2 console, chose **Connect**, and opened an EC2 Instance Connect session. I used this session to run the AWS CLI commands for the next task.
 
-> Screenshot placeholder — EC2 Instance Connect connection screen for the bastion host.
+> Screenshot placeholder — EC2 Instance Connect terminal session on the bastion host.
 
-## Task 3: Launched the web server instance by using the AWS CLI
+## Task 3: Launched a web server using the AWS CLI
 
-This part of the lab required me to use the command line to automate the EC2 launch process. I used the bastion host as a trusted environment from which I could run AWS CLI commands and configure a web server instance.
+### Retrieved the AMI, subnet, and security group
 
-### Step 1: Retrieved the latest AMI ID
-
-I ran a script to retrieve the availability zone metadata, derive the AWS Region, and query the latest Amazon Linux 2 AMI ID from AWS Systems Manager Parameter Store. I saved the result in the `AMI` environment variable.
+I used the instance metadata service to determine the bastion host's Availability Zone and Region, and queried Systems Manager Parameter Store for the latest Amazon Linux 2 AMI ID:
 
 ```bash
 AZ=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone)
 export AWS_DEFAULT_REGION=${AZ::-1}
-AMI=$(aws ssm get-parameters --names /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 --query 'Parameters[0].[Value]' --output text)
-echo $AMI
+AMI=$(aws ssm get-parameters \
+  --names /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2 \
+  --query 'Parameters[0].[Value]' --output text)
+echo "$AMI"
 ```
 
-> Screenshot placeholder — EC2 Instance Connect session showing the retrieved AMI ID for Amazon Linux 2.
-
-### Step 2: Retrieved the subnet ID
-
-I queried the Lab VPC for the public subnet and saved the subnet ID to the `SUBNET` variable.
+I retrieved the public subnet and web security group IDs and stored them in shell variables:
 
 ```bash
-SUBNET=$(aws ec2 describe-subnets --filters 'Name=tag:Name,Values=Public Subnet' --query Subnets[].SubnetId --output text)
-echo $SUBNET
+SUBNET=$(aws ec2 describe-subnets \
+  --filters 'Name=tag:Name,Values=Public Subnet' \
+  --query 'Subnets[].SubnetId' --output text)
+echo "$SUBNET"
+
+SG=$(aws ec2 describe-security-groups \
+  --filters Name=group-name,Values=WebSecurityGroup \
+  --query 'SecurityGroups[].GroupId' --output text)
+echo "$SG"
 ```
 
-> Screenshot placeholder — AWS CLI command output showing the public subnet ID.
+> Screenshot placeholder — terminal showing the AMI, public subnet, and web security group values. Redact account-specific information if present.
 
-### Step 3: Retrieved the web security group ID
+### Downloaded the user data script and launched the instance
 
-I retrieved the web security group ID using the AWS CLI and saved it to `SG`.
-
-```bash
-SG=$(aws ec2 describe-security-groups --filters Name=group-name,Values=WebSecurityGroup --query SecurityGroups[].GroupId --output text)
-echo $SG
-```
-
-> Screenshot placeholder — AWS CLI command output showing the security group ID for the web server.
-
-### Step 4: Downloaded the user data script
-
-I downloaded a user data script from the lab-provided source and reviewed its contents before launching the web server instance.
+I downloaded and inspected the lab-provided user data script:
 
 ```bash
 wget https://aws-tc-largeobjects.s3.us-west-2.amazonaws.com/CUR-TF-100-RSJAWS-1-23732/171-lab-JAWS-create-ec2/s3/UserData.txt
 cat UserData.txt
 ```
 
-The script installed Apache, downloaded the application package, and configured the web application automatically when the instance launched.
-
-> Screenshot placeholder — Terminal output showing the downloaded `UserData.txt` file and contents.
-
-### Step 5: Launched the web server instance
-
-I used a single `aws ec2 run-instances` command to launch the web server instance with the required AMI, subnet, security group, instance type, and user data script.
+The script was intended to install and configure the web server and application during instance initialization. I then launched a `t3.micro` instance named `Web Server`, passing the downloaded script as user data:
 
 ```bash
-INSTANCE=$(\
-aws ec2 run-instances \
---image-id $AMI \
---subnet-id $SUBNET \
---security-group-ids $SG \
---user-data file:///home/ec2-user/UserData.txt \
---instance-type t3.micro \
---tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=Web Server}]' \
---query 'Instances[*].InstanceId' \
---output text \
-)
-echo $INSTANCE
+INSTANCE=$(aws ec2 run-instances \
+  --image-id "$AMI" \
+  --subnet-id "$SUBNET" \
+  --security-group-ids "$SG" \
+  --user-data file:///home/ec2-user/UserData.txt \
+  --instance-type t3.micro \
+  --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=Web Server}]' \
+  --query 'Instances[*].InstanceId' \
+  --output text)
+echo "$INSTANCE"
 ```
 
-This command launched the new EC2 instance and tagged it as `Web Server`.
+> Screenshot placeholder — downloaded user data script and AWS CLI output showing the web server instance ID.
 
-> Screenshot placeholder — AWS CLI output showing the new web server instance ID.
+### Checked the instance and tested the site
 
-### Step 6: Waited for the instance to become ready
-
-I monitored the instance state until it moved to a `running` state. I used the AWS CLI to check the instance's lifecycle and confirm readiness before testing the website.
+I checked the instance state until it reported `running`:
 
 ```bash
-aws ec2 describe-instances --instance-ids $INSTANCE --query 'Reservations[].Instances[].State.Name' --output text
+aws ec2 describe-instances --instance-ids "$INSTANCE" \
+  --query 'Reservations[].Instances[].State.Name' --output text
 ```
 
-> Screenshot placeholder — CLI output showing the EC2 instance state changing to `running`.
-
-### Step 7: Tested the web server
-
-Once the instance was running, I retrieved the public DNS name and opened it in a browser. The website responded successfully, confirming that the instance had been configured properly.
+I retrieved the public DNS name and opened it in a browser to test the web server:
 
 ```bash
-aws ec2 describe-instances --instance-ids $INSTANCE --query Reservations[].Instances[].PublicDnsName --output text
+aws ec2 describe-instances --instance-ids "$INSTANCE" \
+  --query 'Reservations[].Instances[].PublicDnsName' --output text
 ```
 
-The browser displayed the configured web application, which confirmed that the EC2 instance had been launched and configured correctly.
+> Screenshot placeholder — running web server instance in the EC2 console and the resulting web page in a browser.
 
-> Screenshot placeholder — Browser output showing the working web server page.
+## Optional challenge: investigated the misconfigured web server
 
-> Screenshot placeholder — EC2 console showing the newly launched `Web Server` instance in the instance list.
+I worked through the optional challenge to diagnose why the `Misconfigured Web Server` instance was not serving the expected site. I made a mistake early in the investigation: I deleted the misconfigured user data before inspecting it. Since the original launch-time input was no longer available to me in the place I expected, I used CloudTrail and the instance's CLI and cloud-init logs to reconstruct what had run.
 
-## Optional challenge: investigated a misconfigured web server
+> Screenshot placeholder — misconfigured web server instance and the initial failed web page or connection attempt.
 
-I also completed the optional challenge, which focused on troubleshooting an EC2 instance that had been configured incorrectly. This part of the lab was more complex because I had accidentally deleted the user data file before I inspected it. I then used CloudTrail and AWS CLI logs to reconstruct the original script and identify the root cause.
+### Used CloudTrail and instance logs to investigate
 
-### What went wrong
+I reviewed CloudTrail activity and the instance logs to trace the launch and initialization. The cloud-init output showed a warning that the `scripts-user` module had failed at `Oct 01 16:32:08`:
 
-I had already launched the instance and then discovered that its configuration was broken. When I reviewed the instance, the web server was not working as expected. I then realized that I had deleted the misconfigured user data file too early, without first reviewing what it contained.
+```text
+cc_scripts_user.py[WARNING]: Failed to run module scripts-user
+util.py[WARNING]: Running module scripts-user ... failed
+```
 
-This mistake forced me to reverse engineer the original configuration from system logs and CloudTrail records. I had to reconstruct what the script had originally intended to do and then compare it with the live state of the system.
+This log established that cloud-init had reported a user-script execution failure during that initialization. The same captured output later showed a subsequent cloud-init run reaching `modules:final` and finishing. I treated those as separate log entries and used the persisted script and its timestamps to understand what had run, rather than assuming that a later successful cloud-init completion meant the earlier user-script attempt had succeeded.
 
-> Screenshot placeholder — misconfigured EC2 instance details showing the failed web server configuration.
+> Screenshot placeholder — cloud-init output showing the failed `scripts-user` module and the later initialization sequence. Include the timestamp context.
 
-### Investigated the issue with CloudTrail and CLI logs
+### Recovered the persisted user data script
 
-I used AWS CloudTrail and the CLI logs captured from the environment to investigate what had happened. The logs showed the sequence of actions that had run during instance launch and identified the commands that had been used to configure the EC2 instance.
-
-I was able to trace the lifecycle of the instance and confirm that the user data script had been applied during the launch process. The evidence in the logs helped me reconstruct the script, even though the original file had already been removed.
-
-> Screenshot placeholder — CloudTrail log output used to investigate the EC2 instance launch events.
-
-> Screenshot placeholder — CLI log output showing the user data commands and configuration actions.
-
-### Reconstructed the original user data script
-
-After reviewing the CloudTrail and CLI logs, I reconstructed the original launch script by identifying the commands that had been executed when the instance was provisioned. I then compared the script contents with the current state of the instance to identify the misconfiguration.
-
-The key discovery was that the user data script had used `httpdd` instead of `httpd` during the initial launch. This caused the web server package to be invoked incorrectly and left the instance in a broken state.
-
-I confirmed that the correct command should have been:
+Although I had deleted the user data before inspecting it, I found a persisted cloud-init script on the instance. I displayed the script and listed the scripts directory:
 
 ```bash
+sudo cat /var/lib/cloud/instance/scripts/part-001
+sudo ls -l /var/lib/cloud/instance/scripts/
+```
+
+The recovered `part-001` script shown in my terminal contained:
+
+```bash
+#!/bin/bash
+# Install Apache Web Server
 yum install -y httpd
-systemctl enable httpd
-systemctl start httpd
+
+# Turn on web server
+systemctl enable httpd.service
 ```
 
-Instead, the original script had used the incorrect service name `httpdd`, which prevented Apache from being installed or enabled correctly.
+The directory listing showed `part-001` as a 114-byte file. This evidence let me recover the script content from the instance even though I had deleted the copy I meant to inspect. Importantly, the recovered commands shown here used `httpd`, not `httpdd`; therefore, these screenshots did not support attributing the cloud-init warning to an `httpdd` typo. The warning indicated that the `scripts-user` module failed, but the recovered file alone did not establish the precise cause of that failure. I used the CloudTrail and cloud-init evidence together rather than treating the misspelling as confirmed by this recovered script.
 
-> Screenshot placeholder — reconstructed user data script showing the incorrect `httpdd` command and the corrected `httpd` command.
+> Screenshot placeholder — `sudo cat /var/lib/cloud/instance/scripts/part-001` showing the recovered user data script.
+>
+> Screenshot placeholder — `sudo ls -l /var/lib/cloud/instance/scripts/` showing the `part-001` file and its size.
 
-### Corrected the misconfiguration
+### Diagnosed and corrected the server configuration
 
-After identifying the root cause, I corrected the broken installation by installing the proper package and enabling the Apache service. I then verified that the web server started successfully and responded correctly in the browser.
+I used the reconstructed script and the instance logs to guide the troubleshooting. The recovered commands showed that Apache had been installed and enabled, but the script shown in the evidence did not include a `systemctl start` command. I therefore checked the service state and completed the configuration by ensuring the correct package was installed and the service was enabled and running:
 
 ```bash
 sudo yum install -y httpd
-sudo systemctl enable httpd
-sudo systemctl start httpd
+sudo systemctl enable httpd.service
+sudo systemctl start httpd.service
+sudo systemctl status httpd.service
 ```
 
-> Screenshot placeholder — final successful web server status after the fix was applied.
+After the service was running, I retested the instance using its public IPv4 DNS name and confirmed whether the web server responded. The screenshots available here documented the cloud-init warning and recovered script; they did not themselves show the final browser verification, so I left a placeholder for that result.
 
-## Lesson learned
+> Screenshot placeholder — Apache service status after troubleshooting.
+>
+> Screenshot placeholder — browser verification of the repaired web server using its public DNS name.
 
-This lab reinforced the importance of reviewing user data scripts before deleting them, especially when an instance has been created by automation. The optional challenge taught me that CloudTrail and CLI logs can be valuable forensic tools when a configuration file has been lost or altered. In this case, those logs allowed me to reconstruct the original user data script and successfully identify the `httpdd` typo that had caused the instance to fail.
+## Key lessons
+
+- I learned to inspect and preserve a user data script before deleting or changing it during troubleshooting.
+- I used CloudTrail and instance-side logs as complementary sources for reconstructing launch and initialization activity.
+- I used the persisted file under `/var/lib/cloud/instance/scripts/` to recover user data after deleting my local copy.
+- I distinguished what the logs demonstrated from what they did not: the captured `part-001` script used `httpd`, while cloud-init separately reported a failed `scripts-user` module.
+- I checked both cloud-init output and the application service state instead of assuming that an instance in the `running` state meant its web server was working.
 
 ## Conclusion
 
-I completed the EC2 lab successfully by launching a bastion host, connecting to it through EC2 Instance Connect, and then using the AWS CLI to launch and test a web server. I also completed the troubleshooting challenge, where I had to trace the misconfigured user data script by using CloudTrail and the CLI logs after I had inadvertently removed the file too soon. The final fix confirmed that the root cause was an incorrect `httpdd` command in the original user data script, which had prevented Apache from starting correctly.
+I launched a bastion host through the AWS Management Console, connected to it with EC2 Instance Connect, and used the AWS CLI to launch a web server instance. In the optional challenge, I initially deleted the misconfigured user data before reviewing it, then used CloudTrail and CLI/cloud-init logs to recover and investigate the initialization script. The evidence I captured showed a failed `scripts-user` module and a persisted script containing `yum install -y httpd` and `systemctl enable httpd.service`. I used that evidence to guide the service checks and troubleshooting, without attributing the failure to an `httpdd` typo that was not present in the recovered script.
 
-> Screenshot placeholder — final summary showing the completed EC2 instance and working web server status.
+> Screenshot placeholder — final EC2 instance list and successful web server verification.
