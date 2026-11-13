@@ -20,15 +20,15 @@ CHECK_PATH="${1:-/}"
 SERVICES="${SERVICES:-}"
 
 if ! [[ "$DISK_WARN_PERCENT" =~ ^[0-9]+$ ]] || [ "$DISK_WARN_PERCENT" -lt 1 ] || [ "$DISK_WARN_PERCENT" -gt 100 ]; then
-  printf 'ERROR: DISK_WARN_PERCENT must be an integer from 1 to 100.\\n' >&2
+  printf 'ERROR: DISK_WARN_PERCENT must be an integer from 1 to 100.\n' >&2
   exit 2
 fi
 if ! [[ "$MEMORY_WARN_PERCENT" =~ ^[0-9]+$ ]] || [ "$MEMORY_WARN_PERCENT" -lt 1 ] || [ "$MEMORY_WARN_PERCENT" -gt 100 ]; then
-  printf 'ERROR: MEMORY_WARN_PERCENT must be an integer from 1 to 100.\\n' >&2
+  printf 'ERROR: MEMORY_WARN_PERCENT must be an integer from 1 to 100.\n' >&2
   exit 2
 fi
 if ! [[ "$LOAD_WARN_PER_CORE" =~ ^[0-9]+([.][0-9]+)?$ ]] || ! awk -v value="$LOAD_WARN_PER_CORE" 'BEGIN { exit !(value > 0) }'; then
-  printf 'ERROR: LOAD_WARN_PER_CORE must be a positive number.\\n' >&2
+  printf 'ERROR: LOAD_WARN_PER_CORE must be a positive number.\n' >&2
   exit 2
 fi
 
