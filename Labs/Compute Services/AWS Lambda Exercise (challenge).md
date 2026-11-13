@@ -196,29 +196,7 @@ I had successfully built and tested a complete pipeline that:
 - Used S3 object creation events to automatically invoke the function.
 - Reported the result via SNS email with the subject "Word Count Result" and the message formatted as required.
 
-Congratulations — the challenge was completed.
-
----
-
-## Recommended filenames for screenshots
-
-- architecture_overview.png
-- console_region_selection.png
-- iam_lambdaaccessrole.png
-- create_lambda_function.png
-- lambda_code_editor.png
-- lambda_function_details.png
-- sns_topic_create.png
-- sns_subscription_confirmed.png
-- environment_variable_topicarn.png
-- s3_bucket_create.png
-- s3_event_notification.png
-- s3_upload_sample_files.png
-- sns_email_wordcount.png
-- lambda_execution_logs.png
-- email_forward_example.png
-- lambda_function_screenshot_for_instructor.png
-- cloudwatch_logs_troubleshoot.png
+The challenge was completed.
 
 ---
 
