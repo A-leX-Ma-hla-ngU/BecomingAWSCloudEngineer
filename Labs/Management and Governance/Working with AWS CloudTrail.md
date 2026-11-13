@@ -23,7 +23,7 @@ The Café leadership team had asked me to investigate who modified the website a
 > **Screenshot placeholder — Activity architecture:**
 <img width="734" height="389" alt="Screenshot 2026-11-07 at 19 56 43" src="https://github.com/user-attachments/assets/b8369641-7e37-4b39-82f4-faed9b3d5f3e" />
 
-> **Screenshot placeholder — Café website before and after:**
+> **Screenshot placeholder — Café website before:**
 <img width="851" height="867" alt="Screenshot 2026-11-07 at 20 36 07" src="https://github.com/user-attachments/assets/dcf39666-1d45-4922-b855-ab5f95a0d22c" />
 
 ## Task 1: Inspected the security group and website
@@ -162,8 +162,7 @@ aws cloudtrail lookup-events \
 ```
 
 > **Screenshot placeholder — AWS CLI investigation:**
-<img width="897" height="749" alt="Screenshot 2026-11-07 at 21 49 48" src="https://github.com/user-attachments/assets/cc940e8a-433a-4992-adb0-114c7bd60b76" />s.
-<img width="902" height="753" alt="Screenshot 2026-11-07 at 21 53 50" src="https://github.com/user-attachments/assets/24678a19-4654-4203-8fea-df5ecb67a91a" />
+<img width="897" height="749" alt="Screenshot 2026-11-07 at 21 49 48" src="https://github.com/user-attachments/assets/cc940e8a-433a-4992-adb0-114c7bd60b76" />
 <img width="880" height="332" alt="Screenshot 2026-11-07 at 21 53 50" src="https://github.com/user-attachments/assets/4e6e28e5-66f1-48a6-a916-b338091ef011" />
 
 
