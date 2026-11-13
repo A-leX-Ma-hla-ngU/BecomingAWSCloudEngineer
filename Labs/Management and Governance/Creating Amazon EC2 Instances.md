@@ -6,7 +6,7 @@ This lab introduced me to launching and configuring Amazon EC2 instances. I used
 
 The final architecture consisted of a bastion host and a web server instance in a VPC.
 
-> Screenshot placeholder — final architecture diagram showing the bastion host and web server.
+> Screenshot placeholder — <img width="729" height="523" alt="Screenshot 2026-11-13 at 07 52 10" src="https://github.com/user-attachments/assets/01c04094-fcb1-45ce-9422-c82b837a4a2b" />
 
 ## Objectives completed
 
@@ -26,17 +26,27 @@ I opened the EC2 console and launched an instance named `Bastion host`. I select
 
 I selected the Lab VPC and its public subnet, left auto-assign public IP enabled, and created a security group named `Bastion security group` with the description `Permit SSH connections`. I retained the default 8 GiB root volume and attached the `Bastion-Role` instance profile so that the host could make the required AWS service calls through the CLI.
 
-> Screenshot placeholder — bastion host launch settings, including the AMI, instance type, network, security group, and IAM instance profile.
+> Screenshot placeholder — <img width="806" height="724" alt="Screenshot 2026-10-01 at 19 10 32" src="https://github.com/user-attachments/assets/9bb7fef4-bcfe-4da3-8b70-4fe949de78ef" />
+<img width="799" height="350" alt="Screenshot 2026-10-01 at 19 10 47" src="https://github.com/user-attachments/assets/88a96fa7-4719-4f86-a5a4-b8f5b93c847d" />
+<img width="793" height="283" alt="Screenshot 2026-10-01 at 19 11 05" src="https://github.com/user-attachments/assets/c468eaa8-8c36-4230-a1b4-d696c663442d" />
+<img width="807" height="648" alt="Screenshot 2026-10-01 at 19 12 03" src="https://github.com/user-attachments/assets/fa1ee6d3-4ae0-4baa-a39a-d9ad6fa8f6a1" />
+<img width="778" height="353" alt="Screenshot 2026-10-01 at 19 12 17" src="https://github.com/user-attachments/assets/564e93dd-be28-4f19-a21d-66ba7562fd46" />
+<img width="787" height="265" alt="Screenshot 2026-10-01 at 19 16 05" src="https://github.com/user-attachments/assets/cb413248-f9af-4cb2-a6c7-520d37aa22a7" />
+<img width="669" height="307" alt="Screenshot 2026-10-01 at 19 16 53" src="https://github.com/user-attachments/assets/c69972f7-fb8d-430a-9890-5654724f2ffb" />
+
 
 I reviewed the launch summary, launched the instance, and confirmed that it appeared in the EC2 instance list.
 
-> Screenshot placeholder — EC2 console showing the running bastion host.
+> Screenshot placeholder — <img width="705" height="253" alt="Screenshot 2026-10-01 at 19 35 17" src="https://github.com/user-attachments/assets/94ecf646-8e0d-4467-881c-2e1b33145d75" />
+<img width="801" height="333" alt="Screenshot 2026-10-01 at 19 38 13" src="https://github.com/user-attachments/assets/af76dd24-da0a-42b2-8764-9059d44a48d4" />
+
 
 ## Task 2: Connected to the bastion host
 
 After the bastion host was running, I selected it in the EC2 console, chose **Connect**, and opened an EC2 Instance Connect session. I used this session to run the AWS CLI commands for the next task.
 
-> Screenshot placeholder — EC2 Instance Connect terminal session on the bastion host.
+> Screenshot placeholder — <img width="788" height="576" alt="Screenshot 2026-10-01 at 19 43 51" src="https://github.com/user-attachments/assets/07482f6b-3fc3-43dc-8c4a-4e941126672b" />
+<img width="813" height="387" alt="Screenshot 2026-10-01 at 19 44 10" src="https://github.com/user-attachments/assets/ec2657a7-3be5-485c-b170-c56c102f5c6e" />
 
 ## Task 3: Launched a web server using the AWS CLI
 
@@ -67,7 +77,9 @@ SG=$(aws ec2 describe-security-groups \
 echo "$SG"
 ```
 
-> Screenshot placeholder — terminal showing the AMI, public subnet, and web security group values. Redact account-specific information if present.
+> Screenshot placeholder — <img width="485" height="93" alt="Screenshot 2026-10-01 at 19 46 52" src="https://github.com/user-attachments/assets/582e471e-68ed-437a-94df-b2ad4c1f5440" />
+<img width="818" height="135" alt="Screenshot 2026-10-01 at 19 48 26" src="https://github.com/user-attachments/assets/22f3573b-a50a-46b5-b782-bce1645e1d66" />
+<img width="817" height="186" alt="Screenshot 2026-10-01 at 19 51 31 copy" src="https://github.com/user-attachments/assets/7b28795b-8614-497d-959b-f1ad5f813f6d" />
 
 ### Downloaded the user data script and launched the instance
 
@@ -93,7 +105,9 @@ INSTANCE=$(aws ec2 run-instances \
 echo "$INSTANCE"
 ```
 
-> Screenshot placeholder — downloaded user data script and AWS CLI output showing the web server instance ID.
+> Screenshot placeholder — <img width="810" height="412" alt="Screenshot 2026-10-01 at 19 51 31" src="https://github.com/user-attachments/assets/1b1781c8-82a8-41d3-a973-99dc75f4df14" />
+
+<img width="818" height="617" alt="Screenshot 2026-10-01 at 19 54 38" src="https://github.com/user-attachments/assets/c295189c-c8d9-4336-a984-5934f248340b" />
 
 ### Checked the instance and tested the site
 
@@ -111,13 +125,16 @@ aws ec2 describe-instances --instance-ids "$INSTANCE" \
   --query 'Reservations[].Instances[].PublicDnsName' --output text
 ```
 
-> Screenshot placeholder — running web server instance in the EC2 console and the resulting web page in a browser.
+> Screenshot placeholder — <img width="825" height="101" alt="Screenshot 2026-10-01 at 19 57 06" src="https://github.com/user-attachments/assets/937f9311-9331-4154-8afc-8c3d4299874e" />
+
+<img width="831" height="639" alt="Screenshot 2026-10-01 at 20 01 59" src="https://github.com/user-attachments/assets/5f408876-a37c-4cda-af28-61a86515552f" />
 
 ## Optional challenge: investigated the misconfigured web server
 
 I worked through the optional challenge to diagnose why the `Misconfigured Web Server` instance was not serving the expected site. I made a mistake early in the investigation: I deleted the local copy of the user data that I had downloaded before inspecting it. Because the original launch-time script was no longer available in the working directory, I used CloudTrail and the instance's cloud-init logs to reconstruct it.
 
-> Screenshot placeholder — misconfigured web server instance and the initial failed web page or connection attempt.
+> Screenshot placeholder — <img width="789" height="231" alt="Screenshot 2026-10-01 at 20 42 47" src="https://github.com/user-attachments/assets/ff17b2d8-def2-4850-88cb-484fe7cb168f" /><img width="767" height="917" alt="Screenshot 2026-11-13 at 08 36 58" src="https://github.com/user-attachments/assets/1580d8b3-68c7-4304-8bf5-4c8819e5697c" />
+
 
 ### Used CloudTrail and instance logs to investigate
 
@@ -130,7 +147,9 @@ util.py[WARNING]: Running module scripts-user ... failed
 
 This log established that cloud-init had reported a user-script execution failure during initialization. The same captured output later showed a subsequent cloud-init run reaching `modules:final` and finishing. I treated those as separate log entries and used the script artifacts and timestamps to understand what had run, rather than assuming that a later successful cloud-init completion meant the earlier user-script attempt had succeeded.
 
-> Screenshot placeholder — cloud-init output showing the failed `scripts-user` module and the later initialization sequence. Include the timestamp context.
+> Screenshot placeholder — <img width="812" height="169" alt="Screenshot 2026-10-01 at 21 10 01" src="https://github.com/user-attachments/assets/23b26ea2-8dbc-4dd6-8226-d2f6b74703bd" />
+<img width="1671" height="151" alt="Screenshot 2026-10-01 at 21 10 25" src="https://github.com/user-attachments/assets/f410309b-994f-4a02-b735-62d20428280c" />
+
 
 ### Recovered the instance-side cloud-init artifacts
 
@@ -148,7 +167,9 @@ This command revealed important files such as:
 
 The presence of these files confirmed that cloud-init had stored user data and script state on the instance itself. That was important because it meant I still had a path to recover the original launch behavior without relying on the deleted local copy.
 
-> Screenshot placeholder — `sudo find /var/lib/cloud -type f | sort` output listing the cloud-init artifacts.
+> Screenshot placeholder —
+<img width="814" height="45" alt="Screenshot 2026-10-01 at 21 22 44" src="https://github.com/user-attachments/assets/7338bea1-ea47-4b3a-99b7-60c529d06245" />
+<img width="775" height="682" alt="Screenshot 2026-10-01 at 21 22 56" src="https://github.com/user-attachments/assets/8fb100be-ba58-4025-91e7-91c8dd6304be" />
 
 ### Reviewed the recovered script files
 
@@ -173,9 +194,11 @@ systemctl enable httpd.service
 
 The user-data file under `/var/lib/cloud/instance/user-data.txt` showed the same launch-time configuration that had been passed at instance creation. This evidence was critical because it confirmed that the launch script had been stored in cloud-init state and could still be recovered even after the local copy had been removed. It also showed that the failed `scripts-user` module was not necessarily a sign that the instance had no Apache configuration at all; it meant the launch-time script had encountered a failure during its run.
 
-> Screenshot placeholder — `sudo cat /var/lib/cloud/instance/scripts/part-001` showing the recovered script.
->
-> Screenshot placeholder — `sudo cat /var/lib/cloud/instance/user-data.txt` showing the persisted user data.
+> Screenshot placeholder —
+<img width="852" height="624" alt="Screenshot 2026-10-02 at 11 50 30" src="https://github.com/user-attachments/assets/a9371936-0987-4b30-b196-ca2e24d66c93" />
+
+> Screenshot placeholder —
+<img width="808" height="238" alt="Screenshot 2026-10-01 at 21 17 29" src="https://github.com/user-attachments/assets/7d988ef5-1eb1-47ae-a0cc-226980e450f3" />
 
 ### Diagnosed and corrected the server configuration
 
@@ -190,9 +213,7 @@ sudo systemctl status httpd.service
 
 After the service was started correctly, I retested the instance using its public DNS name and confirmed that the web server responded as expected.
 
-> Screenshot placeholder — Apache service state after the fix.
->
-> Screenshot placeholder — browser verification of the repaired web server using its public DNS name.
+> Screenshot placeholder — <img width="833" height="596" alt="Screenshot 2026-10-01 at 20 43 42" src="https://github.com/user-attachments/assets/22c4bc49-831c-4b41-91ab-b9bb41466be1" />
 
 ## Key lessons
 
