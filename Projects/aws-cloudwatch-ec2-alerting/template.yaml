@@ -1,0 +1,70 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Learning project: monitor an existing EC2 instance CPU metric and send
+  alarm notifications to an email address through Amazon SNS.
+
+Parameters:
+  InstanceId:
+    Type: String
+    Description: ID of an existing EC2 instance in this AWS Region.
+    AllowedPattern: "^i-[a-fA-F0-9]+$"
+    ConstraintDescription: Enter a valid EC2 instance ID such as i-0123456789abcdef0.
+
+  NotificationEmail:
+    Type: String
+    Description: Email address that should receive alarm notifications.
+    AllowedPattern: "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+    ConstraintDescription: Enter a valid email address.
+
+  CpuThreshold:
+    Type: Number
+    Default: 70
+    MinValue: 1
+    MaxValue: 100
+    Description: CPU utilization percentage that triggers the alarm.
+
+Resources:
+  AlarmTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      DisplayName: EC2 CPU Alarm Notifications
+      TopicName: !Sub "ec2-cpu-alerts-${AWS::StackName}"
+
+  EmailSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: email
+      Endpoint: !Ref NotificationEmail
+      TopicArn: !Ref AlarmTopic
+
+  HighCpuAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription: !Sub "EC2 CPU utilization exceeded ${CpuThreshold}% for two consecutive five-minute periods."
+      Namespace: AWS/EC2
+      MetricName: CPUUtilization
+      Dimensions:
+        - Name: InstanceId
+          Value: !Ref InstanceId
+      Statistic: Average
+      Period: 300
+      EvaluationPeriods: 2
+      DatapointsToAlarm: 2
+      Threshold: !Ref CpuThreshold
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - !Ref AlarmTopic
+      OKActions:
+        - !Ref AlarmTopic
+
+Outputs:
+  AlarmName:
+    Description: CloudWatch alarm name
+    Value: !Ref HighCpuAlarm
+  SnsTopicArn:
+    Description: SNS topic receiving alarm state notifications
+    Value: !Ref AlarmTopic
+  SubscriptionConfirmation:
+    Description: Confirm the subscription from the email sent by Amazon SNS
+    Value: !Sub "Check the inbox for ${NotificationEmail} and confirm the SNS subscription."

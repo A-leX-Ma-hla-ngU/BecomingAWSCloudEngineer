@@ -7,7 +7,7 @@ on:
       - "Projects/python-github-actions-cicd/**"
       - ".github/workflows/python-cicd.yml"
   pull_request:
-    branches: ["main"]
+    branches: ["main", "portfolio/phase-1-readme-actions-navigation"]
     paths:
       - "Projects/python-github-actions-cicd/**"
       - ".github/workflows/python-cicd.yml"
