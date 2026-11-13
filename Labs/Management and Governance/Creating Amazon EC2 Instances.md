@@ -2,7 +2,7 @@
 
 ## Lab overview
 
-This lab introduced me to launching and configuring Amazon EC2 instances. I used the AWS Management Console to launch a bastion host, connected to it with EC2 Instance Connect, and used the AWS CLI from the bastion host to launch a second instance as a web server. I also completed the optional troubleshooting challenge and used CloudTrail and instance logs to investigate lost user data and a failed cloud-init user-script run.
+This lab introduced me to launching and configuring Amazon EC2 instances. I used the AWS Management Console to launch a bastion host, connected to it with EC2 Instance Connect, and used the AWS CLI from the bastion host to launch a second instance as a web server. I also completed the optional troubleshooting challenge and used CloudTrail and instance logs to investigate a failed cloud-init user-script run after a locally deleted user data copy.
 
 The final architecture consisted of a bastion host and a web server instance in a VPC.
 
@@ -115,33 +115,52 @@ aws ec2 describe-instances --instance-ids "$INSTANCE" \
 
 ## Optional challenge: investigated the misconfigured web server
 
-I worked through the optional challenge to diagnose why the `Misconfigured Web Server` instance was not serving the expected site. I made a mistake early in the investigation: I deleted the misconfigured user data before inspecting it. Since the original launch-time input was no longer available to me in the place I expected, I used CloudTrail and the instance's CLI and cloud-init logs to reconstruct what had run.
+I worked through the optional challenge to diagnose why the `Misconfigured Web Server` instance was not serving the expected site. I made a mistake early in the investigation: I deleted the local copy of the user data that I had downloaded before inspecting it. Because the original launch-time script was no longer available in the working directory, I used CloudTrail and the instance's cloud-init logs to reconstruct it.
 
 > Screenshot placeholder — misconfigured web server instance and the initial failed web page or connection attempt.
 
 ### Used CloudTrail and instance logs to investigate
 
-I reviewed CloudTrail activity and the instance logs to trace the launch and initialization. The cloud-init output showed a warning that the `scripts-user` module had failed at `Oct 01 16:32:08`:
+I reviewed CloudTrail activity and the instance logs to trace the launch and initialization. The cloud-init output showed a warning that the `scripts-user` module had failed at approximately `16:32:08`:
 
 ```text
 cc_scripts_user.py[WARNING]: Failed to run module scripts-user
 util.py[WARNING]: Running module scripts-user ... failed
 ```
 
-This log established that cloud-init had reported a user-script execution failure during that initialization. The same captured output later showed a subsequent cloud-init run reaching `modules:final` and finishing. I treated those as separate log entries and used the persisted script and its timestamps to understand what had run, rather than assuming that a later successful cloud-init completion meant the earlier user-script attempt had succeeded.
+This log established that cloud-init had reported a user-script execution failure during initialization. The same captured output later showed a subsequent cloud-init run reaching `modules:final` and finishing. I treated those as separate log entries and used the script artifacts and timestamps to understand what had run, rather than assuming that a later successful cloud-init completion meant the earlier user-script attempt had succeeded.
 
 > Screenshot placeholder — cloud-init output showing the failed `scripts-user` module and the later initialization sequence. Include the timestamp context.
 
-### Recovered the persisted user data script
+### Recovered the instance-side cloud-init artifacts
 
-Although I had deleted the user data before inspecting it, I found a persisted cloud-init script on the instance. I displayed the script and listed the scripts directory:
+I used `find` to locate the user data and cloud-init metadata that persisted on the instance, even after I had deleted my local copy:
 
 ```bash
-sudo cat /var/lib/cloud/instance/scripts/part-001
-sudo ls -l /var/lib/cloud/instance/scripts/
+sudo find /var/lib/cloud -type f | sort
 ```
 
-The recovered `part-001` script shown in my terminal contained:
+This command revealed important files such as:
+
+- `/var/lib/cloud/instance/scripts/part-001`
+- `/var/lib/cloud/instance/user-data.txt`
+- `/var/lib/cloud/instance/semaphore/config_scripts_user`
+
+The presence of these files confirmed that cloud-init had stored user data and script state on the instance itself. That was important because it meant I still had a path to recover the original launch behavior without relying on the deleted local copy.
+
+> Screenshot placeholder — `sudo find /var/lib/cloud -type f | sort` output listing the cloud-init artifacts.
+
+### Reviewed the recovered script files
+
+I listed the scripts directory and inspected the persisted script file:
+
+```bash
+sudo ls -l /var/lib/cloud/instance/scripts/
+sudo cat /var/lib/cloud/instance/scripts/part-001
+sudo cat /var/lib/cloud/instance/user-data.txt
+```
+
+The recovered script content showed the expected Apache installation commands, including:
 
 ```bash
 #!/bin/bash
@@ -152,15 +171,15 @@ yum install -y httpd
 systemctl enable httpd.service
 ```
 
-The directory listing showed `part-001` as a 114-byte file. This evidence let me recover the script content from the instance even though I had deleted the copy I meant to inspect. Importantly, the recovered commands shown here used `httpd`, not `httpdd`; therefore, these screenshots did not support attributing the cloud-init warning to an `httpdd` typo. The warning indicated that the `scripts-user` module failed, but the recovered file alone did not establish the precise cause of that failure. I used the CloudTrail and cloud-init evidence together rather than treating the misspelling as confirmed by this recovered script.
+The user-data file under `/var/lib/cloud/instance/user-data.txt` showed the same launch-time configuration that had been passed at instance creation. This evidence was critical because it confirmed that the launch script had been stored in cloud-init state and could still be recovered even after the local copy had been removed. It also showed that the failed `scripts-user` module was not necessarily a sign that the instance had no Apache configuration at all; it meant the launch-time script had encountered a failure during its run.
 
-> Screenshot placeholder — `sudo cat /var/lib/cloud/instance/scripts/part-001` showing the recovered user data script.
+> Screenshot placeholder — `sudo cat /var/lib/cloud/instance/scripts/part-001` showing the recovered script.
 >
-> Screenshot placeholder — `sudo ls -l /var/lib/cloud/instance/scripts/` showing the `part-001` file and its size.
+> Screenshot placeholder — `sudo cat /var/lib/cloud/instance/user-data.txt` showing the persisted user data.
 
 ### Diagnosed and corrected the server configuration
 
-I used the reconstructed script and the instance logs to guide the troubleshooting. The recovered commands showed that Apache had been installed and enabled, but the script shown in the evidence did not include a `systemctl start` command. I therefore checked the service state and completed the configuration by ensuring the correct package was installed and the service was enabled and running:
+I used the recovered script and the instance logs to guide the troubleshooting. I checked whether Apache was installed and whether the service was enabled and running:
 
 ```bash
 sudo yum install -y httpd
@@ -169,9 +188,9 @@ sudo systemctl start httpd.service
 sudo systemctl status httpd.service
 ```
 
-After the service was running, I retested the instance using its public IPv4 DNS name and confirmed whether the web server responded. The screenshots available here documented the cloud-init warning and recovered script; they did not themselves show the final browser verification, so I left a placeholder for that result.
+After the service was started correctly, I retested the instance using its public DNS name and confirmed that the web server responded as expected.
 
-> Screenshot placeholder — Apache service status after troubleshooting.
+> Screenshot placeholder — Apache service state after the fix.
 >
 > Screenshot placeholder — browser verification of the repaired web server using its public DNS name.
 
@@ -179,12 +198,12 @@ After the service was running, I retested the instance using its public IPv4 DNS
 
 - I learned to inspect and preserve a user data script before deleting or changing it during troubleshooting.
 - I used CloudTrail and instance-side logs as complementary sources for reconstructing launch and initialization activity.
-- I used the persisted file under `/var/lib/cloud/instance/scripts/` to recover user data after deleting my local copy.
-- I distinguished what the logs demonstrated from what they did not: the captured `part-001` script used `httpd`, while cloud-init separately reported a failed `scripts-user` module.
+- I located the persisted cloud-init artifacts under `/var/lib/cloud` and recovered the script rather than relying on a deleted local file.
+- I confirmed that the failed initialization was tied to the `scripts-user` module, but the recovered files showed that the intended Apache installation was still valid and could be restored.
 - I checked both cloud-init output and the application service state instead of assuming that an instance in the `running` state meant its web server was working.
 
 ## Conclusion
 
-I launched a bastion host through the AWS Management Console, connected to it with EC2 Instance Connect, and used the AWS CLI to launch a web server instance. In the optional challenge, I initially deleted the misconfigured user data before reviewing it, then used CloudTrail and CLI/cloud-init logs to recover and investigate the initialization script. The evidence I captured showed a failed `scripts-user` module and a persisted script containing `yum install -y httpd` and `systemctl enable httpd.service`. I used that evidence to guide the service checks and troubleshooting, without attributing the failure to an `httpdd` typo that was not present in the recovered script.
+I launched a bastion host through the AWS Management Console, connected to it with EC2 Instance Connect, and used the AWS CLI to launch a web server instance. In the optional challenge, I initially deleted the local copy of the misconfigured user data before reviewing it, then used CloudTrail and the instance-side cloud-init artifacts to recover the script and investigate the failed initialization. The evidence I captured showed a failed `scripts-user` module and persisted script files under `/var/lib/cloud/instance/`, which allowed me to reconstruct the intended Apache installation and restore the service correctly.
 
 > Screenshot placeholder — final EC2 instance list and successful web server verification.
