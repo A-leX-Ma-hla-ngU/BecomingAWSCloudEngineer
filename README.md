@@ -1,113 +1,64 @@
-# ☁️ Becoming an AWS Cloud Engineer
+# Becoming an AWS Cloud Engineer
 
-Welcome to my AWS learning repository. This is a record of my hands-on practice, labs, and project work as I build my skills in cloud computing, Linux, networking, security, and AWS services.
+A practical learning portfolio documenting my development toward cloud operations and junior cloud engineering roles. This repository brings together AWS Academy / AWS re:Start-style lab notes, Linux and networking practice, and independent programming and automation projects.
 
-This repository is part of my journey through the AWS re/Start programme and reflects the work I have completed so far.
+> **Portfolio note:** Lab write-ups represent guided, hands-on learning exercises. Independent project folders contain code and infrastructure templates that should be validated in a lab account before being described as deployed or production-ready.
 
-## Overview
+## Start here
 
-I am learning how to:
-- deploy and manage AWS resources
-- work with Linux environments
-- understand networking and VPC design
-- configure secure and scalable cloud services
-- build and document practical cloud solutions
+- [AWS and Linux labs](Labs/README.md) — browse guided lab notes by technical area.
+- [Projects](Projects/README.md) — explore independent projects, automation, and Python practice.
+- [GitHub profile README draft](profile/README.md) — profile introduction ready to publish in a dedicated profile repository.
 
-## Current progress
+## Featured independent projects
 
-### Completed lab areas
+| Project | What it demonstrates |
+|---|---|
+| [Linux Server Health Monitor](Projects/linux-server-health-monitor/README.md) | Bash scripting, Linux observability basics, configurable thresholds, and exit codes |
+| [CloudFormation VPC Network Foundation](Projects/aws-cloudformation-network-foundation/README.md) | Infrastructure as Code, VPCs, subnets, route tables, Internet Gateway, and restricted security group rules |
+| [CloudWatch EC2 Alerting](Projects/aws-cloudwatch-ec2-alerting/README.md) | CloudWatch alarms, EC2 metrics, SNS topics, and email notifications |
+| [Python CI/CD Demo](Projects/python-github-actions-cicd/README.md) | Python unit tests, Docker image builds, and GitHub Actions |
 
-#### Linux Fundamentals
-I have completed multiple Linux-focused labs covering:
-- Bash shell scripting
-- working with the Linux file system
-- managing processes and services
-- log file management
-- user and group management
-- software management
-- SSH and backup operations
-- text editors such as Vim and Nano
+## Technical areas
 
-#### Compute Services
-I have worked through AWS compute and storage labs including:
-- Amazon EC2 instance setup
-- Linux walkthroughs
-- Amazon S3 usage and website hosting
-- managing storage
-- working with Amazon EBS
-- AWS Lambda exercises
-- challenge-based practical tasks
+| Area | Topics represented in this repository |
+|---|---|
+| **Linux administration** | Bash, filesystem navigation, users and groups, processes, services, logs, package management, SSH, and backup operations |
+| **AWS compute and storage** | EC2, S3, EBS, Lambda, and static website hosting exercises |
+| **Networking** | VPCs, subnets, IP addressing, routing, security groups, web-server connectivity, and network troubleshooting |
+| **Databases** | Relational database operations, Amazon Aurora, DynamoDB, and application-to-database exercises |
+| **Management and governance** | CloudTrail, CloudFormation, and infrastructure troubleshooting |
+| **Programming and automation** | Python fundamentals, unit testing, Bash, Docker, GitHub Actions, and infrastructure automation |
 
-#### Networking
-I have completed networking labs covering:
-- VPC creation
-- subnet creation and IP allocation
-- private and public IP addresses
-- internet protocol troubleshooting
-- building a VPC and launching a web server
-- troubleshooting network issues
+See [Labs/README.md](Labs/README.md) for the available subject folders and individual lab notes.
 
-#### Databases
-I have completed database-related labs, including:
-- Amazon DynamoDB basics
-- Amazon Aurora introduction
-- database table operations
-- selecting, organizing, and querying data
-- insert, update, and delete data
-- challenge lab for DB setup and app interaction
+## How to explore this portfolio
 
-#### Management and Governance
-I have explored AWS governance and operational monitoring through:
-- AWS CloudTrail
-- CloudFormation troubleshooting exercises
+1. Start with the [lab index](Labs/README.md) and open a subject area.
+2. Review each lab's objective, implementation notes, screenshots, and troubleshooting record where available.
+3. Explore the [projects index](Projects/README.md) for independent work that applies the concepts.
+4. Read each project guide before running commands or deploying AWS resources.
+5. Add screenshots and test results only after personally running and verifying the project.
 
-## Portfolio project
+## Skills I am developing
 
-### S3 static website
-I have started a project focused on hosting a static website using Amazon S3.
+- Linux command-line operations and Bash scripting
+- AWS compute, storage, networking, and database fundamentals
+- VPC and subnet design
+- Cloud troubleshooting and operational documentation
+- Python fundamentals and unit testing
+- Docker fundamentals and GitHub Actions CI/CD
+- Infrastructure as Code with AWS CloudFormation
+- Monitoring and alerting with CloudWatch and SNS
 
-This project is included in the repository under:
-- `Projects/S3-static website`
+## Roadmap
 
-## Repository structure
-
-```text
-BecomingAWSCloudEngineer/
-├── Labs/
-│   ├── Linux Fundamentals/
-│   ├── Compute Services/
-│   ├── Networking/
-│   ├── Databases/
-│   └── Management and Governance/
-├── Projects/
-│   └── S3-static website
-├── README.md
-└── .gitignore
-```
-
-## Skills being developed
-
-- AWS cloud fundamentals
-- Linux administration
-- EC2, S3, EBS, and Lambda
-- Virtual networking and VPC design
-- database concepts and SQL-like operations
-- monitoring and governance tools such as CloudTrail
-- troubleshooting and documentation
-
-## Next goals
-
-I plan to continue by expanding my practical AWS portfolio with:
-- IAM and security labs
-- more advanced networking and architecture work
-- automation with CloudFormation and Infrastructure as Code
-- additional AWS project builds
-- preparation for AWS certification pathways
-
-## Current status
-
-This repository is a live record of my cloud learning journey and will continue to grow as I complete more labs, projects, and hands-on exercises.
+- Add automated shell linting and tests for operational scripts.
+- Extend the CloudFormation network project with carefully scoped private networking.
+- Add application-level metrics and dashboards to the monitoring project.
+- Practise deployment and rollback workflows in disposable lab environments.
+- Continue documenting architecture decisions, validation steps, cost considerations, and troubleshooting outcomes.
 
 ---
 
-Created and updated as part of my AWS Cloud Engineer learning journey.
+This repository is updated as I continue building and documenting practical cloud engineering skills.

@@ -3,8 +3,14 @@ name: Python CI/CD
 on:
   push:
     branches: ["main"]
+    paths:
+      - "Projects/python-github-actions-cicd/**"
+      - ".github/workflows/python-cicd.yml"
   pull_request:
-    branches: ["main"]
+    branches: ["main", "portfolio/phase-1-readme-actions-navigation"]
+    paths:
+      - "Projects/python-github-actions-cicd/**"
+      - ".github/workflows/python-cicd.yml"
 
 permissions:
   contents: read
@@ -14,6 +20,9 @@ jobs:
   test:
     name: Run Python tests
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Projects/python-github-actions-cicd
 
     steps:
       - name: Check out source code
@@ -60,7 +69,7 @@ jobs:
       - name: Build Docker image
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: Projects/python-github-actions-cicd
           push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
           tags: |
             ${{ steps.image.outputs.name }}:latest
