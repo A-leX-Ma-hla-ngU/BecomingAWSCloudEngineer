@@ -7,7 +7,7 @@ on:
       - "Projects/linux-server-health-monitor/**"
       - ".github/workflows/shell-check.yml"
   pull_request:
-    branches: ["main"]
+    branches: ["main", "portfolio/phase-1-readme-actions-navigation"]
     paths:
       - "Projects/linux-server-health-monitor/**"
       - ".github/workflows/shell-check.yml"
