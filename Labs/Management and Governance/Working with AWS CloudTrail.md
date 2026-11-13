@@ -20,9 +20,11 @@ The activity began with an EC2 instance named **Café Web Server**, which hosted
 
 The Café leadership team had asked me to investigate who modified the website and to reduce the chance of another compromise. I acted as the investigator, using CloudTrail as an audit source to trace changes and identify the responsible user.
 
-> **Screenshot placeholder — Activity architecture:** Add the lab architecture diagram showing the web server, security group, CloudTrail, S3, and Athena components.
->
-> **Screenshot placeholder — Café website before and after:** Add images showing the normal website and the altered website. Use only the lab-provided site and avoid exposing unrelated data.
+> **Screenshot placeholder — Activity architecture:**
+<img width="734" height="389" alt="Screenshot 2026-11-07 at 19 56 43" src="https://github.com/user-attachments/assets/b8369641-7e37-4b39-82f4-faed9b3d5f3e" />
+
+> **Screenshot placeholder — Café website before and after:**
+<img width="851" height="867" alt="Screenshot 2026-11-07 at 20 36 07" src="https://github.com/user-attachments/assets/dcf39666-1d45-4922-b855-ab5f95a0d22c" />
 
 ## Task 1: Inspected the security group and website
 
@@ -30,8 +32,12 @@ In the EC2 console, I opened **Instances**, selected **Café Web Server**, and i
 
 I copied the instance's public IPv4 address and opened `http://<WebServerIP>/cafe/` in a browser. The Café website appeared normal at that point.
 
-> **Screenshot placeholder — Initial security group rule:** Add a screenshot showing HTTP and the restricted SSH rule. Redact public IP addresses if needed.
->
+> **Screenshot placeholder — Initial security group rule:**
+
+<img width="835" height="626" alt="Screenshot 2026-11-07 at 20 32 54" src="https://github.com/user-attachments/assets/7e2dd366-ba1c-49eb-bbbe-e9b816e1616c" />
+
+<img width="813" height="565" alt="Screenshot 2026-11-07 at 20 33 19" src="https://github.com/user-attachments/assets/c103002f-50fa-4032-baa0-7c5548977c43" />
+
 > **Screenshot placeholder — Website before the incident:** Add a screenshot showing the original Café website.
 
 ## Task 2: Created a CloudTrail trail and observed the incident
@@ -52,11 +58,15 @@ I continued through the log event and review pages and created the trail. I conf
 
 After allowing time for the lab event to occur, I refreshed the Café website, bypassing the browser cache when necessary. The site had been altered. I inspected the EC2 instance's security group and found an additional inbound rule that allowed SSH from `0.0.0.0/0`. That rule was distinct from my restricted SSH rule and exposed the instance to SSH attempts from any IPv4 address.
 
-> **Screenshot placeholder — CloudTrail trail:** Add a screenshot showing the `monitor` trail and its S3 destination. Do not expose credentials.
->
-> **Screenshot placeholder — Altered website:** Add a screenshot showing the website after the lab incident.
->
-> **Screenshot placeholder — Unexpected SSH rule:** Add a screenshot showing the added SSH rule with source `0.0.0.0/0`.
+> **Screenshot placeholder — CloudTrail trail:**
+<img width="838" height="682" alt="Screenshot 2026-11-07 at 20 40 38" src="https://github.com/user-attachments/assets/b78403c3-dde1-4eea-8481-bf9c51306cae" />
+<img width="851" height="694" alt="Screenshot 2026-11-07 at 20 42 11" src="https://github.com/user-attachments/assets/a4cc577d-dbef-4535-97be-fbe92d8b6599" />
+
+> **Screenshot placeholder — Altered website:**
+<img width="857" height="805" alt="Screenshot 2026-11-07 at 20 44 34" src="https://github.com/user-attachments/assets/a4c0276f-b519-4b92-b0c5-dbca013c5190" />
+
+> **Screenshot placeholder — Unexpected SSH rule:**
+ <img width="836" height="470" alt="Screenshot 2026-11-07 at 20 48 44" src="https://github.com/user-attachments/assets/ddb5a89f-1458-423a-b623-50260d801eff" />
 
 ## Task 3: Investigated CloudTrail logs
 
@@ -92,9 +102,14 @@ cat <filename.json> | python -m json.tool
 
 CloudTrail records included fields such as `awsRegion`, `eventName`, `eventSource`, `eventTime`, `requestParameters`, `sourceIPAddress`, and `userIdentity`.
 
-> **Screenshot placeholder — Downloaded CloudTrail logs:** Add a screenshot showing the downloaded log files and directory structure. Redact account IDs if desired.
->
-> **Screenshot placeholder — Formatted CloudTrail event:** Add a screenshot of a relevant JSON event with sensitive identifiers redacted.
+> **Screenshot placeholder — Downloaded CloudTrail logs:**
+<img width="901" height="71" alt="Screenshot 2026-11-07 at 21 25 50" src="https://github.com/user-attachments/assets/709f22ce-6c55-4835-876b-a4d57c69ed46" />
+<img width="1680" height="1050" alt="Screenshot 2026-11-07 at 21 14 02" src="https://github.com/user-attachments/assets/4208bc40-f236-4823-a330-fa84d1384b38" />
+<img width="871" height="124" alt="Screenshot 2026-11-07 at 21 22 35" src="https://github.com/user-attachments/assets/c85acaae-51d8-4e6c-a93d-2e15372f0369" />
+<img width="881" height="252" alt="Screenshot 2026-11-07 at 21 23 34" src="https://github.com/user-attachments/assets/1a76090d-e60d-4b36-be1b-eaf61a99fa27" />
+
+> **Screenshot placeholder — Formatted CloudTrail event:**
+<img width="901" height="761" alt="Screenshot 2026-11-07 at 21 29 30" src="https://github.com/user-attachments/assets/9edb4009-0912-44cb-8d17-c5a6dccd2b57" />
 
 ### Searched the logs with grep
 
