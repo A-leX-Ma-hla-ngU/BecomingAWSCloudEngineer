@@ -1,0 +1,26 @@
+name: Shell script validation
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "Projects/linux-server-health-monitor/**"
+      - ".github/workflows/shell-check.yml"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "Projects/linux-server-health-monitor/**"
+      - ".github/workflows/shell-check.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  bash-syntax:
+    name: Validate Bash syntax
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v4
+      - name: Check Bash syntax
+        run: bash -n Projects/linux-server-health-monitor/health-check.sh
