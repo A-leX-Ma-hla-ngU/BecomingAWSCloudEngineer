@@ -110,6 +110,8 @@ CloudTrail records included fields such as `awsRegion`, `eventName`, `eventSourc
 
 > **Screenshot placeholder — Formatted CloudTrail event:**
 <img width="901" height="761" alt="Screenshot 2026-11-07 at 21 29 30" src="https://github.com/user-attachments/assets/9edb4009-0912-44cb-8d17-c5a6dccd2b57" />
+<img width="901" height="761" alt="Screenshot 2026-11-07 at 21 29 30" src="https://github.com/user-attachments/assets/5d4c4a1e-8c7f-42f3-b8e2-6ec886f2cff0" />
+
 
 ### Searched the logs with grep
 
@@ -159,7 +161,11 @@ aws cloudtrail lookup-events \
   --region "$region" --output text | grep "$sgId"
 ```
 
-> **Screenshot placeholder — AWS CLI investigation:** Add a screenshot showing the filtered security group event. Redact account IDs and any unrelated sensitive details.
+> **Screenshot placeholder — AWS CLI investigation:**
+<img width="897" height="749" alt="Screenshot 2026-11-07 at 21 49 48" src="https://github.com/user-attachments/assets/cc940e8a-433a-4992-adb0-114c7bd60b76" />s.
+<img width="902" height="753" alt="Screenshot 2026-11-07 at 21 53 50" src="https://github.com/user-attachments/assets/24678a19-4654-4203-8fea-df5ecb67a91a" />
+<img width="880" height="332" alt="Screenshot 2026-11-07 at 21 53 50" src="https://github.com/user-attachments/assets/4e6e28e5-66f1-48a6-a916-b338091ef011" />
+
 
 ## Task 4: Queried CloudTrail logs with Athena
 
@@ -175,9 +181,15 @@ s3://monitoring####/results/
 
 I replaced `####` with the digits in my actual bucket name.
 
-> **Screenshot placeholder — Athena table creation:** Add a screenshot showing the CloudTrail S3 location and generated table name.
->
-> **Screenshot placeholder — Athena query result location:** Add a screenshot of the configured S3 results location. Redact account information if necessary.
+> **Screenshot placeholder — Athena table creation:**
+<img width="807" height="309" alt="Screenshot 2026-11-07 at 22 06 15" src="https://github.com/user-attachments/assets/d6db4a85-f876-453f-bb50-bc8c61efd7c1" />
+<img width="852" height="273" alt="Screenshot 2026-11-07 at 22 11 02" src="https://github.com/user-attachments/assets/e0dd5121-56d3-4ea7-b679-4b6202fce8f9" />
+<img width="858" height="175" alt="Screenshot 2026-11-07 at 22 12 55" src="https://github.com/user-attachments/assets/fe1c3fa5-b8dd-45b1-bae5-9d3ba3e64423" />
+<img width="824" height="277" alt="Screenshot 2026-11-07 at 22 13 33" src="https://github.com/user-attachments/assets/832ed87c-2a7d-4f77-8d8e-9700f99b1b83" />
+
+> **Screenshot placeholder — Athena query result location:**
+<img width="817" height="591" alt="Screenshot 2026-11-07 at 22 17 51" src="https://github.com/user-attachments/assets/c5abb163-33d2-4089-a413-24a729062c0d" />
+<img width="842" height="638" alt="Screenshot 2026-11-07 at 22 18 18" src="https://github.com/user-attachments/assets/9a6a440a-f056-4019-b440-fbbd7d067502" />
 
 ### Queried the event data
 
@@ -220,9 +232,13 @@ ORDER BY eventtime DESC;
 
 I examined the matching event details to identify the AWS user, exact event time, source IP address, and whether the action had been performed through the console or programmatic access. I saved the source IP address for the remediation work and kept it out of public screenshots if it was sensitive.
 
-> **Screenshot placeholder — Athena investigation query:** Add a screenshot showing the query used to filter EC2 security events.
->
-> **Screenshot placeholder — Identified CloudTrail event:** Add a screenshot showing the relevant actor, time, source IP, event name, and access method. Redact values that should not be shared publicly.
+> **Screenshot placeholder — Athena investigation query:**
+<img width="785" height="332" alt="Screenshot 2026-11-07 at 22 24 50" src="https://github.com/user-attachments/assets/f0667f13-a903-49c2-8d07-69834a03cc02" />
+<img width="847" height="683" alt="Screenshot 2026-11-07 at 22 25 14" src="https://github.com/user-attachments/assets/7c12b195-7f52-4248-9c3a-1acce9781e82" />
+
+
+> **Screenshot placeholder — Identified CloudTrail event:** A<img width="833" height="344" alt="Screenshot 2026-11-07 at 22 40 26" src="https://github.com/user-attachments/assets/da5da414-c03e-4aac-9cfd-53db62c1cb84" />
+<img width="843" height="616" alt="Screenshot 2026-11-07 at 22 41 19" src="https://github.com/user-attachments/assets/d28915bc-42f8-4d97-90e8-f20caee3146f" />
 
 ## Task 5: Removed unauthorized access and secured the environment
 
@@ -255,14 +271,21 @@ I reviewed login-capable accounts and confirmed that the remaining standard Amaz
 sudo cat /etc/passwd | grep -v nologin
 ```
 
-> **Screenshot placeholder — OS account investigation:** Add a screenshot showing the unexpected account and its removal. Redact unrelated account details.
+> **Screenshot placeholder — OS account investigation:**
+<img width="744" height="58" alt="Screenshot 2026-11-07 at 22 47 09" src="https://github.com/user-attachments/assets/271927ab-e1f6-46ef-ae53-7dd7e7546e53" />
+<img width="1246" height="160" alt="Screenshot 2026-11-07 at 22 47 42" src="https://github.com/user-attachments/assets/2a623d7d-c085-4d97-a572-13e34c0ed2c7" />
+<img width="893" height="192" alt="Screenshot 2026-11-07 at 22 48 07" src="https://github.com/user-attachments/assets/a92707c0-3651-4833-b330-5984d3382e3c" />
+<img width="792" height="44" alt="Screenshot 2026-11-07 at 22 48 23" src="https://github.com/user-attachments/assets/195a9736-623c-489e-be88-89c50a255401" />
+<img width="699" height="78" alt="Screenshot 2026-11-07 at 22 49 10" src="https://github.com/user-attachments/assets/b1970952-7093-4450-ac20-a99b7101e96b" />
+<img width="756" height="58" alt="Screenshot 2026-11-07 at 22 49 21" src="https://github.com/user-attachments/assets/3ce72c48-d909-4454-a18d-44a7f9ea924e" />
+
 
 ### Hardened SSH access
 
-I checked the SSH daemon configuration file and found that it had recently been modified. I edited `/etc/ssh/sshd_config`, disabled password authentication, and enabled key-based authentication by setting:
+I checked the SSH daemon configuration file and found that it had recently been modified. I edited `/etc/ssh/sshd_config`, disabled password authentication through commenting it out, and enabled key-based authentication by setting:
 
 ```text
-PasswordAuthentication no
+#PasswordAuthentication yes
 ```
 
 I saved the file and restarted the SSH service:
@@ -273,9 +296,11 @@ sudo service sshd restart
 
 If the restart interrupted the session, I reconnected using the authorized key. In the EC2 security group, I removed the unexpected SSH rule whose source was `0.0.0.0/0` and retained only the restricted SSH rule needed for the lab.
 
-> **Screenshot placeholder — Hardened SSH configuration:** Add a screenshot showing `PasswordAuthentication no`, without exposing host details.
->
-> **Screenshot placeholder — Corrected security group:** Add a screenshot showing that the unrestricted SSH ingress rule had been removed.
+> **Screenshot placeholder — Hardened SSH configuration:**
+<img width="894" height="748" alt="Screenshot 2026-11-07 at 22 53 59" src="https://github.com/user-attachments/assets/9019e583-a38e-4d46-bbdc-245c6bd7fb89" />
+
+> **Screenshot placeholder — Corrected security group:**
+<img width="834" height="522" alt="Screenshot 2026-11-07 at 22 56 10" src="https://github.com/user-attachments/assets/81012a0b-cd32-4626-bec8-d934ca0c76e3" />
 
 ### Restored the website
 
@@ -289,13 +314,25 @@ sudo mv Coffee-and-Pastries.backup Coffee-and-Pastries.jpg
 
 I reloaded `http://<WebServerIP>/cafe/` and verified that the expected image appeared again.
 
-> **Screenshot placeholder — Restored Café website:** Add a screenshot showing the corrected website.
+> **Screenshot placeholder — Restored Café website:**
+
+<img width="789" height="67" alt="Screenshot 2026-11-07 at 22 57 17" src="https://github.com/user-attachments/assets/57b5d7ca-997f-4324-95cb-0c0d863938c0" />
+
+<img width="894" height="60" alt="Screenshot 2026-11-07 at 22 57 50" src="https://github.com/user-attachments/assets/0e2df573-4c02-4f38-b6eb-b956d91c0ac9" />
+
+
+ <img width="851" height="899" alt="Screenshot 2026-11-07 at 22 58 07" src="https://github.com/user-attachments/assets/36fd6d53-edc1-46eb-a3f9-2e8dfaa2e5d7" />
+<img width="848" height="909" alt="Screenshot 2026-11-07 at 22 58 15" src="https://github.com/user-attachments/assets/5577ed92-1477-4a0b-8073-e8615a73fc1a" />
 
 ### Removed the compromised IAM user
 
 In the IAM console, I opened **Users**, selected the lab's `chaos` user, and deleted it after confirming the username. This removed that user's AWS account access.
 
-> **Screenshot placeholder — IAM user removal:** Add a screenshot showing the user deletion confirmation or updated user list. Do not include unrelated user information.
+> **Screenshot placeholder — IAM user removal:**
+<img width="570" height="434" alt="Screenshot 2026-11-07 at 22 59 29" src="https://github.com/user-attachments/assets/ccbb3a93-33ea-4884-bb7c-39c579461c4f" />
+<img width="651" height="519" alt="Screenshot 2026-11-07 at 23 00 02" src="https://github.com/user-attachments/assets/61ed2260-f2e5-4d83-810b-da59d7d241a4" />
+
+<img width="580" height="496" alt="Screenshot 2026-11-07 at 23 01 31" src="https://github.com/user-attachments/assets/d7756f09-eb38-4bd5-a9e2-b6563cdb64be" />
 
 ## Activity completion
 
