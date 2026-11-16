@@ -27,5 +27,3 @@ I'm working toward junior cloud engineering, cloud support, and DevOps opportuni
 - Improving automated testing and CI/CD workflows.
 
 ---
-
-*This profile README is a draft. To display it on my GitHub profile, create a public repository named exactly `A-leX-Ma-hla-ngU` and place this file at its root as `README.md`.*
