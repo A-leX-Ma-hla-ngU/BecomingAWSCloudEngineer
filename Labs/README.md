@@ -22,7 +22,7 @@ Database table operations, querying and modifying data, Amazon Aurora, DynamoDB,
 CloudTrail and CloudFormation troubleshooting exercises.
 
 ### [Security](Security/README.md)
-Amazon Inspector vulnerability assessment and remediation.
+ AWS security labs focused on patching, vulnerability scanning, and remediation.
 
 ## Suggested learning path
 
