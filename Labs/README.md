@@ -21,6 +21,9 @@ Database table operations, querying and modifying data, Amazon Aurora, DynamoDB,
 ### [Management and Governance](Management%20and%20Governance/README.md)
 CloudTrail and CloudFormation troubleshooting exercises.
 
+### [Security](Security/README.md)
+Amazon Inspector vulnerability assessment and remediation.
+
 ## Suggested learning path
 
 1. Build Linux command-line confidence.
