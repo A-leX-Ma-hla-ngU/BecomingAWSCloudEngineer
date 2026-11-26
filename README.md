@@ -7,7 +7,7 @@ A practical learning portfolio documenting my development toward cloud operation
 ## GitHub Learn badges and credentials
 
 - **Badge / credential:** Microsoft Pro Badge: GiftHub Copilot - Profecient 
-[(https://www.credly.com/badges/0413fe96-12d5-4955-b872-064f2fbe5110/linked_in?t=tp3vyx)]
+(https://www.credly.com/badges/0413fe96-12d5-4955-b872-064f2fbe5110/linked_in?t=tp3vyx
 
 
 ## Start here
