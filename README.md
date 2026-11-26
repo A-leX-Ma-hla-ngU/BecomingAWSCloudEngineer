@@ -6,19 +6,9 @@ A practical learning portfolio documenting my development toward cloud operation
 
 ## GitHub Learn badges and credentials
 
-Add badges or credentials you have actually earned from your GitHub Learn profile here. Replace each placeholder with the public badge image URL and its verification/share URL from GitHub Learn. Do not list a badge as earned until it appears on your profile.
+- **Badge / credential:** Microsoft Pro Badge: GiftHub Copilot - Profecient 
+[(https://www.credly.com/badges/0413fe96-12d5-4955-b872-064f2fbe5110/linked_in?t=tp3vyx)]
 
-- **GitHub Learn profile:** [Add your public profile link](ADD_GITHUB_LEARN_PROFILE_URL)
-- **Badge / credential:** [Add badge title and verification link](ADD_PUBLIC_BADGE_OR_CREDENTIAL_URL)
-- **Badge / credential:** [Add badge title and verification link](ADD_PUBLIC_BADGE_OR_CREDENTIAL_URL)
-
-For an image badge, replace a line above with this format:
-
-```markdown
-[![Badge title](PUBLIC_BADGE_IMAGE_URL)](PUBLIC_BADGE_OR_CREDENTIAL_URL)
-```
-
-[Visit GitHub Learn](https://learn.github.com/) to access learning resources. Use the share or verification link provided for each specific badge; don't use private account pages or add account credentials, tokens, or passwords to this repository.
 
 ## Start here
 
